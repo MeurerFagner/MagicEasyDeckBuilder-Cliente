@@ -1,0 +1,9 @@
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.deps.json
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.dll
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.pdb
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.csprojAssemblyReference.cache
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.AssemblyInfoInputs.cache
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.AssemblyInfo.cs
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.csproj.CoreCompileInputs.cache
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.dll
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Core\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.pdb

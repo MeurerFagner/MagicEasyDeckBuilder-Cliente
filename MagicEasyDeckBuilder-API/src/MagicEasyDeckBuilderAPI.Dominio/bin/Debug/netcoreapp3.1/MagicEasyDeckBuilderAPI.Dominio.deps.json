@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "MagicEasyDeckBuilderAPI.Dominio/1.0.0": {
+        "dependencies": {
+          "MagicEasyDeckBuilderAPI.Core": "1.0.0"
+        },
+        "runtime": {
+          "MagicEasyDeckBuilderAPI.Dominio.dll": {}
+        }
+      },
+      "MagicEasyDeckBuilderAPI.Core/1.0.0": {
+        "runtime": {
+          "MagicEasyDeckBuilderAPI.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MagicEasyDeckBuilderAPI.Dominio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MagicEasyDeckBuilderAPI.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

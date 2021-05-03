@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "MagicEasyDeckBuilderAPI.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MagicEasyDeckBuilderAPI.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MagicEasyDeckBuilderAPI.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MagicEasyDeckBuilderAPI.Core/1.0.0": {
+      "type": "project",
+      "path": "../MagicEasyDeckBuilderAPI.Core/MagicEasyDeckBuilderAPI.Core.csproj",
+      "msbuildProject": "../MagicEasyDeckBuilderAPI.Core/MagicEasyDeckBuilderAPI.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "MagicEasyDeckBuilderAPI.Core >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\meure\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\meure\\source\\repos\\MagicEasyDeckBuilder\\Cliente\\MagicEasyDeckBuilder-API\\src\\MagicEasyDeckBuilderAPI.Core\\MagicEasyDeckBuilderAPI.Core.csproj": {
+              "projectPath": "C:\\Users\\meure\\source\\repos\\MagicEasyDeckBuilder\\Cliente\\MagicEasyDeckBuilder-API\\src\\MagicEasyDeckBuilderAPI.Core\\MagicEasyDeckBuilderAPI.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

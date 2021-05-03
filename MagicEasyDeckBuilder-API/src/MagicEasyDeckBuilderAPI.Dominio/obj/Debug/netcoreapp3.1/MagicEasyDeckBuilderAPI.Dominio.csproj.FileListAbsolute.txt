@@ -1,0 +1,12 @@
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.deps.json
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.dll
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.pdb
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.csprojAssemblyReference.cache
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.AssemblyInfoInputs.cache
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.AssemblyInfo.cs
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.csproj.CoreCompileInputs.cache
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.dll
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.pdb
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.dll
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\bin\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Core.pdb
+C:\Users\meure\source\repos\MagicEasyDeckBuilder\Cliente\MagicEasyDeckBuilder-API\src\MagicEasyDeckBuilderAPI.Dominio\obj\Debug\netcoreapp3.1\MagicEasyDeckBuilderAPI.Dominio.csproj.CopyComplete
