@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
 {
-    public class Casual : TipoFormato
+    public class Casual : TipoFormatoBase
     {
         public Casual(string nome) : base(nome)
         {

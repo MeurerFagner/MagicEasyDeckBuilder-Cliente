@@ -1,8 +1,10 @@
 ﻿using Bogus;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 using MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor;
+using MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MagicEasyDeckBuilderAPI.Dominio.Test.DadosFake
@@ -12,12 +14,13 @@ namespace MagicEasyDeckBuilderAPI.Dominio.Test.DadosFake
          public static Deck GetDeckPorformato(string tipoformato, int quantidadeCartas, int quantidadeSideDeck = 0)
         {
             var deckFake = new Faker<Deck>();
-            var cartas = CartaFake.GetCartasDekcGenerico(quantidadeCartas);
-            var side = CartaFake.GetCartasDekcGenerico(quantidadeSideDeck);
+            var main = CartaFake.GetCartasDekcGenerico(quantidadeCartas,TipoDeckCarta.MainDeck);
+            var side = CartaFake.GetCartasDekcGenerico(quantidadeSideDeck,TipoDeckCarta.SideDeck);
 
-            deckFake.RuleFor(d => d.TipoFormato, (f, c) => TipoFormato.Factory(tipoformato));
-            deckFake.RuleFor(d => d.Cartas, (f, c) => cartas);
-            deckFake.RuleFor(d => d.SideDeck, (f, c) => side);
+            var cartas = main.Concat(side);
+
+            deckFake.RuleFor(d => d.TipoFormato, (f, c) => TipoFormatoBase.Factory(tipoformato));
+            deckFake.RuleFor(d => d.Cartas, (f, c) => cartas.ToList());
 
             return deckFake.Generate();
         }

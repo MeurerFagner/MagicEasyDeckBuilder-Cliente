@@ -4,12 +4,12 @@ using System.Text;
 
 namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor
 {
-    public enum Cor
+    public class Cor
     {
-        Branco,
-        Azul,
-        Preto,
-        Verde,
-        Vermelho
+        public const string Branco = "W";
+        public const string Azul = "U";
+        public const string Preto = "B";
+        public const string Verde = "G";
+        public const string Vermelho = "R";
     }
 }

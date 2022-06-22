@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MagicEasyDeckBuilderAPI.Core.Constantes
 {
-    public static class Supertipo 
+    public static class SuperTipo
     {
-        public const string BASICO = "Básico";
-        public static string LENDARIA = "Lendário";
-        public static string LENDARIO = "Lendária";
-        public static string NEVADO = "Neve";
-     }
+        public const string LENDARIA = "Legendary";
+        public const string BASICO = "Basic";
+        public const string NEVADO = "Snow";
+        public const string MUNDO  = "World";
+        
+        public static IEnumerable<string> SuperTipos = new List<string>
+        {
+            LENDARIA, BASICO, NEVADO, MUNDO
+        };
+    }
 }

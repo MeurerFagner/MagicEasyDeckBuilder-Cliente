@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MagicEasyDeckBuilderAPI.Core
 {
@@ -14,6 +11,11 @@ namespace MagicEasyDeckBuilderAPI.Core
         {
             Valido = true;
             Erros = new List<string>();
+        }
+        public RetornoValidacao(string erro)
+        {
+            Erros = new List<string>();
+            AdicionarErro(erro);
         }
 
         public void AdicionarErro(string erro)

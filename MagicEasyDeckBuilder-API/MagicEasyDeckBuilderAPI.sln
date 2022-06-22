@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31019.35
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.API", "src\MagicEasyDeckBuilderAPI.API\MagicEasyDeckBuilderAPI.API.csproj", "{ABA5A2B7-27C1-4FD9-9267-9CB8293F55DF}"
 EndProject
@@ -11,7 +11,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Core", "src\MagicEasyDeckBuilderAPI.Core\MagicEasyDeckBuilderAPI.Core.csproj", "{8D15C459-AC46-4A67-9DB5-B99274F62171}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicEasyDeckBuilderAPI.Dominio.Test", "test\MagicEasyDeckBuilderAPI.Dominio.Test\MagicEasyDeckBuilderAPI.Dominio.Test.csproj", "{E13551C8-7F7C-47E8-BF14-54A86A3497EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Dominio.Test", "test\MagicEasyDeckBuilderAPI.Dominio.Test\MagicEasyDeckBuilderAPI.Dominio.Test.csproj", "{E13551C8-7F7C-47E8-BF14-54A86A3497EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{ECF10E27-3D74-445E-810C-8930B0450127}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{480AE306-59DB-46CE-B390-D120C167332C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasydeckBuilderAPI.Infra.Test", "tests\MagicEasydeckBuilderAPI.Infra.Test\MagicEasydeckBuilderAPI.Infra.Test.csproj", "{DF00063E-C043-42A6-B889-CC09152FCF61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{DD075418-5913-4F0F-B77B-4BADED627079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C0802908-A79D-4472-A90F-D701602B8DC3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.App", "src\MagicEasyDeckBuilderAPI.App\MagicEasyDeckBuilderAPI.App.csproj", "{465A8A75-C403-4505-AAE7-CF5D60521F11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.App.Test", "test\MagicEasyDeckBuilderAPI.App.Test\MagicEasyDeckBuilderAPI.App.Test.csproj", "{67921DE9-F8D6-4324-ADFE-4C79461CB269}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicEasyDeckBuilderApi.Api.Test", "test\MagicEasyDeckBuilderApi.Api.Test\MagicEasyDeckBuilderApi.Api.Test.csproj", "{D14FF9CF-2F11-4BAA-A03F-36D411150751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +55,35 @@ Global
 		{E13551C8-7F7C-47E8-BF14-54A86A3497EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E13551C8-7F7C-47E8-BF14-54A86A3497EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E13551C8-7F7C-47E8-BF14-54A86A3497EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF00063E-C043-42A6-B889-CC09152FCF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF00063E-C043-42A6-B889-CC09152FCF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF00063E-C043-42A6-B889-CC09152FCF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF00063E-C043-42A6-B889-CC09152FCF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{465A8A75-C403-4505-AAE7-CF5D60521F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{465A8A75-C403-4505-AAE7-CF5D60521F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{465A8A75-C403-4505-AAE7-CF5D60521F11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{465A8A75-C403-4505-AAE7-CF5D60521F11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67921DE9-F8D6-4324-ADFE-4C79461CB269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67921DE9-F8D6-4324-ADFE-4C79461CB269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67921DE9-F8D6-4324-ADFE-4C79461CB269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67921DE9-F8D6-4324-ADFE-4C79461CB269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ABA5A2B7-27C1-4FD9-9267-9CB8293F55DF} = {DD075418-5913-4F0F-B77B-4BADED627079}
+		{545638C3-5B6B-45FA-845E-669C48479E68} = {ECF10E27-3D74-445E-810C-8930B0450127}
+		{5F548043-D0B3-49ED-9BB8-B1FB8C2F53FD} = {480AE306-59DB-46CE-B390-D120C167332C}
+		{E13551C8-7F7C-47E8-BF14-54A86A3497EC} = {ECF10E27-3D74-445E-810C-8930B0450127}
+		{DF00063E-C043-42A6-B889-CC09152FCF61} = {480AE306-59DB-46CE-B390-D120C167332C}
+		{465A8A75-C403-4505-AAE7-CF5D60521F11} = {C0802908-A79D-4472-A90F-D701602B8DC3}
+		{67921DE9-F8D6-4324-ADFE-4C79461CB269} = {C0802908-A79D-4472-A90F-D701602B8DC3}
+		{D14FF9CF-2F11-4BAA-A03F-36D411150751} = {DD075418-5913-4F0F-B77B-4BADED627079}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6443B1F8-9913-43E8-9CA6-0160588C4C19}

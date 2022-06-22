@@ -14,5 +14,9 @@ namespace MagicEasyDeckBuilderAPI.Core.Constantes
         public const string CARTA_RESTRITA_NO_FORMATO = "Carta restrita neste formato.Pode haver apenas uma cópia desta carta no deck.";
         public const string CARTA_BANIDA_NO_FORMATO = "Carta banido neste formato.";
         public const string COMANDANTE_NAO_DEFINIDO = "Comandante não definido para o Deck.";
+        public const string FORMATO_NAO_PERMITE_COMANDANTE = "Este Formato de jogo não utiliza Comandante.";
+        public const string COMANDANTE_INVALIDO_BRAWL = "Apenas Criaturas Lendárias e Planeswalkers Lendários podem ser Comandante.";
+        public const string COMANDANTE_INVALIDO_COMMANDER = "Apenas Criaturas Lendárias podem ser Comandante, ou e Planeswalkers Lendários hablitados para serem Comandante.";
+        public const string CARTA_DIFERENTE_COR_COMANDANTE = "Carta possui Cores diferente da identidade de Cores do Comandante.";
     }
 }

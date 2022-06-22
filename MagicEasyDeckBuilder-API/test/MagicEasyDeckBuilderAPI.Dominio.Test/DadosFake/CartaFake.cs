@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
+using MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace MagicEasyDeckBuilderAPI.Dominio.Test.DadosFake
 {
     public class CartaFake
     {
-        public static IEnumerable<CartaDeck> GetCartasDekcGenerico(int quantidadeCartas, string tipo = null)
+        public static IEnumerable<CartaDeck> GetCartasDekcGenerico(int quantidadeCartas,TipoDeckCarta tipoDeck, string tipo = null)
         {
             if (quantidadeCartas > 0)
             {
@@ -22,6 +23,7 @@ namespace MagicEasyDeckBuilderAPI.Dominio.Test.DadosFake
 
                 cartaDeckFake.RuleFor(c => c.Deck, () => deck);
                 cartaDeckFake.RuleFor(c => c.Carta, () => carta);
+                cartaDeckFake.RuleFor(c => c.TipoDeck, () => tipoDeck);
                 cartaDeckFake.RuleFor(c => c.Quantidade, (f,c) =>
                 {
                     var quantidade = 4;
