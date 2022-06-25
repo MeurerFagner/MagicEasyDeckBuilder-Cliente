@@ -1,0 +1,26 @@
+<div class="content-box">
+  <h1 class="h1">Login</h1>
+  <form #f="ngForm">
+    <div class="alert alert-danger" role="alert" *ngIf="loginErro">{{loginErro}}</div>
+    <div  class="form-group">
+      <label for="email">Email</label>
+      <input type="email" required [(ngModel)]="this.login.email" id="email" name="email" #email="ngModel"
+        class="form-control">
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        <div *ngIf="!this.login.email">Email obrigatório</div>
+        <div *ngIf="this.login.email">Email inválido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" required [(ngModel)]="this.login.senha" id="senha" name="senha" #senha="ngModel"
+        class="form-control">
+      <div [hidden]="senha.valid || senha.pristine" class="alert alert-danger">
+        Senha é obrigatório
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg" [disabled]="!f.valid" (click)="logar()">
+      Logar
+    </button>
+  </form>
+</div>

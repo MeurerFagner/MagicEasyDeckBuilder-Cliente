@@ -32,7 +32,7 @@ namespace MagicEasyDeckBuilderApi.Api.Test
             // Arrange
             var dadosLogin = new UsuarioLoginViewModel
             {
-                Login = UsuarioDadosFake.Email,
+                Email = UsuarioDadosFake.Email,
                 Senha = UsuarioDadosFake.Senha
             };
 
@@ -93,7 +93,7 @@ namespace MagicEasyDeckBuilderApi.Api.Test
             // Arrange
             var dadosLogin = new UsuarioLoginViewModel
             {
-                Login = UsuarioDadosFake.Email,
+                Email = UsuarioDadosFake.Email,
                 Senha = UsuarioDadosFake.Senha
             };
 

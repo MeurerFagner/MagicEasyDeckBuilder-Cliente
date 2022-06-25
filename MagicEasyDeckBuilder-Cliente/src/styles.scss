@@ -1,1 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import "./variaveis";
+html, body {
+    background: $cor-preto-contraste !important; 
+    margin: 0;
+    height: 100%;
+
+    font-family: 'Roboto',sans-serif !important; 
+    font-style: normal;
+    color: $cor-branco !important;
+}
+
+.page-container{
+    min-height: 100vh;
+    position: relative;
+}
+
+.content-box{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: $cor-preto;
+    border: 2px solid #FFFFFF;
+    border-radius: 40px;    
+}
+
+.bg-preto{
+    background-color: $cor-preto;
+}
+
+.btn-primary{
+    background-color: $cor-primaria;
+    color: $cor-branco !important;
+    border-radius: $btn-border-radius;
+    min-width: $btn-min-width;
+    &:hover{
+        background-color: $cor-primaria-contraste;
+    }
+}
+
+.btn-secondary{
+    background-color: $cor-secundaria;
+    color: $cor-branco !important;
+    border-radius: $btn-border-radius;
+    min-width: $btn-min-width;
+    &:hover{
+        background-color: $cor-secundaria-contraste;
+    }
+}
+
+.btn-tertiary{
+    background-color: $cor-terciaria;
+    color: $cor-branco !important;
+    border-radius: $btn-border-radius;
+    min-width: $btn-min-width;
+    &:hover{
+        background-color: $cor-terciaria-contraste;
+    }
+}

@@ -1,0 +1,43 @@
+<div class="content-box">
+  <h1 class="h1">Cadastro</h1>
+  <form #f="ngForm">
+    <div class="alert alert-danger" role="alert" *ngIf="erroCadastro">{{erroCadastro}}</div>
+    <div  class="form-group">
+      <label for="email">Nome</label>
+      <input type="text" required [(ngModel)]="this.dadosForm.nome" id="nome" name="nome" #nome="ngModel"
+        class="form-control">
+      <div [hidden]="nome.valid || nome.pristine" class="alert alert-danger">
+        Nome é obirgatório
+      </div>
+    </div>
+    <div  class="form-group">
+      <label for="email">Email</label>
+      <input type="email" required [(ngModel)]="this.dadosForm.email" id="email" name="email" #email="ngModel"
+        class="form-control">
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        <div *ngIf="!this.dadosForm.email">Email obrigatório</div>
+        <div *ngIf="this.dadosForm.email">Email inválido</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" required [(ngModel)]="this.dadosForm.senha" id="senha" name="senha" #senha="ngModel"
+        class="form-control">
+      <div [hidden]="senha.valid || senha.pristine" class="alert alert-danger">
+        Senha é obrigatório
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="senha">Comfirma Senha</label>
+      <input type="password" required [(ngModel)]="this.dadosForm.senhaConfirmacao" id="comfirmaSenha" name="comfirmaSenha" #comfirmaSenha="ngModel"
+        appComparaCampoValidator="senha" class="form-control">
+      <div [hidden]="comfirmaSenha.valid || comfirmaSenha.pristine" class="alert alert-danger">
+        <div *ngIf="!this.dadosForm.senhaConfirmacao">Comfirmação de Senha é obrigatória</div>
+        <div *ngIf="this.dadosForm.senhaConfirmacao">Comfirmação diferente da Senha</div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary btn-lg" [disabled]="!f.valid" (click)="cadastrar()">
+      Cadastrar
+    </button>
+  </form>
+</div>

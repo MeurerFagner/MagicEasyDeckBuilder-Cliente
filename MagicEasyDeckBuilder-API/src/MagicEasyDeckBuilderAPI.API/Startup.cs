@@ -69,6 +69,7 @@ namespace MagicEasyDeckBuilderAPI.API
 
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
@@ -81,6 +82,7 @@ namespace MagicEasyDeckBuilderAPI.API
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

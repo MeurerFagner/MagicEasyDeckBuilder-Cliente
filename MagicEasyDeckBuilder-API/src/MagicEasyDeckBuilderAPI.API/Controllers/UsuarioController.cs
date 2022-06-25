@@ -23,19 +23,19 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
         [HttpPost, Route("login")]
         public async Task<IActionResult> Login(UsuarioLoginViewModel model)
         {
-            var usuario = await _app.ObtemUsuario(model.Login,model.Senha);
+            var usuario = await _app.ObtemUsuario(model.Email,model.Senha);
 
             if (usuario == null)
                 return NotFound("Login ou senha inválidos.");
 
             var token = _tokenService.GenerateToken(usuario);
 
-            return Ok(new
+            return Ok(new UsuarioAuthViewModel
             {
-                usuario.Id,
-                usuario.Nome,
-                usuario.Email,
-                token
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Email = usuario.Email,
+                Token = token
             });
         }
 

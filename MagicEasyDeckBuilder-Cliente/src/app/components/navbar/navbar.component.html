@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md bg-preto">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="../../../assets/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      MAGIC EASY DECK BUILDER
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#textoNavbar"
+      aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação"
+      (click)="this.isCollapsed = !this.isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="textoNavbar" [ngbCollapse]="this.isCollapsed">
+      <ul class="navbar-nav ms-auto" [ngSwitch]="UsuarioLogado()">
+        <li class="nav-item active" >
+          <a class="nav-link" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/saiba-mais']">Saiba mais</a>
+        </li>
+        <li class="nav-item" *ngSwitchCase="false">
+          <a class="nav-link" [routerLink]="['/cadastro']">Cadastre-se</a>
+        </li>
+        <li class="nav-item" *ngSwitchCase="false">
+          <a class="nav-link btn btn-primary" [routerLink]="['/login']">Entrar</a>
+        </li>
+
+        <li class="nav-item" *ngSwitchCase="true">
+          <a class="nav-link" href="javascript:void(0)">{{ this.nomeUsuario }}</a>
+        </li>
+
+        <li class="nav-item" *ngSwitchCase="true">
+          <a class="nav-link btn btn-secondary" href="javascript:void(0)" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
