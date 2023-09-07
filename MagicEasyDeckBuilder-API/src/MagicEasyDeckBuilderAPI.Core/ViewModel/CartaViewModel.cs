@@ -1,6 +1,7 @@
-﻿using MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor;
+﻿using System;
+using System.Collections.Generic;
 
-namespace MagicEasyDeckBuilderAPI.App.ViewModel
+namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
     public class CartaViewModel
     {

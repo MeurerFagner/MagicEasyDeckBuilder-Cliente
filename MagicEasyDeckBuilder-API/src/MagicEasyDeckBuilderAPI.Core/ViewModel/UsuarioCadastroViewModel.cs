@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace MagicEasyDeckBuilderAPI.App.ViewModel
+namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
     public class UsuarioCadastroViewModel
     {
@@ -16,7 +11,7 @@ namespace MagicEasyDeckBuilderAPI.App.ViewModel
         public string Email { get; set; }
         [Required(ErrorMessage = "O Campo {0} é Obrigatório")]
         public string Senha { get; set; }
-        [Compare("Senha",ErrorMessage = "As senhas não conferem")]
+        [Compare("Senha", ErrorMessage = "As senhas não conferem")]
         public string SenhaConfirmacao { get; set; }
     }
 }

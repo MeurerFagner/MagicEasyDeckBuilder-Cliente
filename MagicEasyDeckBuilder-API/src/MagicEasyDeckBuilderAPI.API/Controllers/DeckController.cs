@@ -1,5 +1,5 @@
 ﻿using MagicEasyDeckBuilderAPI.App.Services;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 using MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato;
 using Microsoft.AspNetCore.Authorization;

@@ -1,4 +1,6 @@
-﻿namespace MagicEasyDeckBuilderAPI.App.ViewModel
+﻿using System.Collections.Generic;
+
+namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
     public class CartaFaceViewModel
     {

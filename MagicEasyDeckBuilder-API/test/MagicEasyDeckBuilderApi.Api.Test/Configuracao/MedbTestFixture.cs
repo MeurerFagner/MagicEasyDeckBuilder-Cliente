@@ -1,5 +1,5 @@
 ﻿using MagicEasyDeckBuilderApi.Api.Test.DadosFake;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;

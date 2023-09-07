@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MagicEasyDeckBuilderAPI.App.ViewModel
+﻿namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
     public class EdicaoViewModel
     {
@@ -12,7 +6,7 @@ namespace MagicEasyDeckBuilderAPI.App.ViewModel
         public string Nome { get; private set; }
         public string IconUrl { get; private set; }
 
-        public EdicaoViewModel( string nome, string sigla, string iconUrl)
+        public EdicaoViewModel(string nome, string sigla, string iconUrl)
         {
             IconUrl = iconUrl;
             Nome = nome;

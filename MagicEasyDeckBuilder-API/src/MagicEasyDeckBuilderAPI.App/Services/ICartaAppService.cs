@@ -1,4 +1,4 @@
-﻿using MagicEasyDeckBuilderAPI.App.ViewModel;
+﻿using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.DTO;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 

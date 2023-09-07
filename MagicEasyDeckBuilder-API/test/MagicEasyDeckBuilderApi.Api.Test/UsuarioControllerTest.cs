@@ -1,14 +1,9 @@
 ﻿using FluentAssertions;
 using MagicEasyDeckBuilderApi.Api.Test.Configuracao;
 using MagicEasyDeckBuilderApi.Api.Test.DadosFake;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 using XUnitPriorityOrderer;
 

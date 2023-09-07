@@ -27,7 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.App.Test", "test\MagicEasyDeckBuilderAPI.App.Test\MagicEasyDeckBuilderAPI.App.Test.csproj", "{67921DE9-F8D6-4324-ADFE-4C79461CB269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicEasyDeckBuilderApi.Api.Test", "test\MagicEasyDeckBuilderApi.Api.Test\MagicEasyDeckBuilderApi.Api.Test.csproj", "{D14FF9CF-2F11-4BAA-A03F-36D411150751}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderApi.Api.Test", "test\MagicEasyDeckBuilderApi.Api.Test\MagicEasyDeckBuilderApi.Api.Test.csproj", "{D14FF9CF-2F11-4BAA-A03F-36D411150751}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{181DC14E-B844-4950-9AF7-D884DF8E74FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicEasyDeckBuilderAPI.Client", "src\MagicEasyDeckBuilderAPI.Client\MagicEasyDeckBuilderAPI.Client.csproj", "{9932A88B-C588-41A5-A8A7-AADA02879FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,10 @@ Global
 		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D14FF9CF-2F11-4BAA-A03F-36D411150751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9932A88B-C588-41A5-A8A7-AADA02879FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9932A88B-C588-41A5-A8A7-AADA02879FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9932A88B-C588-41A5-A8A7-AADA02879FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9932A88B-C588-41A5-A8A7-AADA02879FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +92,7 @@ Global
 		{465A8A75-C403-4505-AAE7-CF5D60521F11} = {C0802908-A79D-4472-A90F-D701602B8DC3}
 		{67921DE9-F8D6-4324-ADFE-4C79461CB269} = {C0802908-A79D-4472-A90F-D701602B8DC3}
 		{D14FF9CF-2F11-4BAA-A03F-36D411150751} = {DD075418-5913-4F0F-B77B-4BADED627079}
+		{9932A88B-C588-41A5-A8A7-AADA02879FC7} = {181DC14E-B844-4950-9AF7-D884DF8E74FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6443B1F8-9913-43E8-9CA6-0160588C4C19}

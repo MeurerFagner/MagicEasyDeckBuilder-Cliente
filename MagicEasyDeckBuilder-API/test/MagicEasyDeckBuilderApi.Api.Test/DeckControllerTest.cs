@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using MagicEasyDeckBuilderApi.Api.Test.Configuracao;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
 using MagicEasyDeckBuilderAPI.Core.Constantes;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 using MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato;
 using Newtonsoft.Json;

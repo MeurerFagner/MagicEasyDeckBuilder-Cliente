@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
 using MagicEasyDeckBuilderAPI.Core.Constantes;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.DTO;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 using MagicEasyDeckBuilderAPI.Dominio.Interfaces.Infra;

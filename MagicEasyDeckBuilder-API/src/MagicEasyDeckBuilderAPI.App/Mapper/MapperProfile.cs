@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 namespace MagicEasyDeckBuilderAPI.App.Mapper
 {

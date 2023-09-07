@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using MagicEasyDeckBuilderApi.Api.Test.Configuracao;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Xunit;
 
 namespace MagicEasyDeckBuilderApi.Api.Test

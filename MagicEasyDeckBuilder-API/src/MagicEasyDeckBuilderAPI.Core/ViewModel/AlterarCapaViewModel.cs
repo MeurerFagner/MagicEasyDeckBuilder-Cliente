@@ -5,16 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicEasyDeckBuilderAPI.App.ViewModel
+namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
-    public class AdicionaCartaViewModel
+    public class AlterarCapaViewModel
     {
         [Required]
         public Guid IdDeck { get; set; }
         [Required]
-        public string IdScryFall { get; set; }
-        [Required]
-        [RegularExpression("main|side|maybe|comandante")]
-        public string Tipo { get; set; }
+        [Url]
+        public string UrlImagem { get; set; }
     }
 }

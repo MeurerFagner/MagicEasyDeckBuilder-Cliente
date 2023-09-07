@@ -1,5 +1,5 @@
 ﻿using MagicEasyDeckBuilderAPI.App.Services;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicEasyDeckBuilderAPI.App.ViewModel
+namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
     public class MoverCartaViewModel
     {

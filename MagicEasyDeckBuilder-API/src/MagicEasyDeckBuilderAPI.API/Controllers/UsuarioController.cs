@@ -1,6 +1,6 @@
 ﻿using MagicEasyDeckBuilderAPI.API.Configuration;
 using MagicEasyDeckBuilderAPI.App.Services;
-using MagicEasyDeckBuilderAPI.App.ViewModel;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
