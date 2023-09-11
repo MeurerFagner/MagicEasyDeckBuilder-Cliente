@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/MagicEasyDeckBuilder-API/.vs/MagicEasyDeckBuilderAPI/DesignTimeBuild/.dtbcache.v2
