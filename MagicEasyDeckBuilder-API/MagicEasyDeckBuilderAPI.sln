@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderApi.Api
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{181DC14E-B844-4950-9AF7-D884DF8E74FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicEasyDeckBuilderAPI.Client", "src\MagicEasyDeckBuilderAPI.Client\MagicEasyDeckBuilderAPI.Client.csproj", "{9932A88B-C588-41A5-A8A7-AADA02879FC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Client", "src\MagicEasyDeckBuilderAPI.Client\MagicEasyDeckBuilderAPI.Client.csproj", "{9932A88B-C588-41A5-A8A7-AADA02879FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

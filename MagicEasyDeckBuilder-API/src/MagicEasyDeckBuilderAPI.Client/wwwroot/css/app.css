@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+html, body {
+  background: #000 !important;
+  margin: 0;
+  height: 100%;
+  font-family: "Roboto", sans-serif !important;
+  font-style: normal;
+  color: #FFFFFF !important;
+}
+
+.page-container {
+  min-height: 100vh;
+  position: relative;
+}
+
+.content-box {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #212121;
+  border: 2px solid #FFFFFF;
+  border-radius: 40px;
+}
+
+.bg-preto {
+  background-color: #212121;
+}
+
+.btn-primary {
+  background-color: #5173CB;
+  color: #FFFFFF !important;
+  border-radius: 40px;
+  min-width: 100px;
+}
+.btn-primary:hover {
+  background-color: #2254d1;
+}
+
+.btn-secondary {
+  background-color: #F36B61;
+  color: #FFFFFF !important;
+  border-radius: 40px;
+  min-width: 100px;
+}
+.btn-secondary:hover {
+  background-color: #f72b1c;
+}
+
+.btn-tertiary {
+  background-color: #65B868;
+  color: #FFFFFF !important;
+  border-radius: 40px;
+  min-width: 100px;
+}
+.btn-tertiary:hover {
+  background-color: #1ab91f;
+}
+
+/*# sourceMappingURL=app.css.map */

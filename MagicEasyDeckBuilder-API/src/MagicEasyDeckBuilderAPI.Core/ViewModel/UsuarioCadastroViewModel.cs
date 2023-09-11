@@ -11,6 +11,7 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
         public string Email { get; set; }
         [Required(ErrorMessage = "O Campo {0} é Obrigatório")]
         public string Senha { get; set; }
+        [Required(ErrorMessage = "O Campo {0} é Obrigatório")]
         [Compare("Senha", ErrorMessage = "As senhas não conferem")]
         public string SenhaConfirmacao { get; set; }
     }

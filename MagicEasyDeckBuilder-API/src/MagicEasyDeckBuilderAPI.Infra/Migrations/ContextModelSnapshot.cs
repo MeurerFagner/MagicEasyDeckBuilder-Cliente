@@ -37,9 +37,6 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
                     b.Property<string>("CustoMana")
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("IdOutroLado")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("IdScryfall")
                         .HasColumnType("text");
 
@@ -49,8 +46,11 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
                     b.Property<string>("Keywords")
                         .HasColumnType("text");
 
-                    b.Property<int>("Lealdade")
-                        .HasColumnType("integer");
+                    b.Property<string>("Layout")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Lealdade")
+                        .HasColumnType("text");
 
                     b.Property<string>("LegalidadePorFormato")
                         .HasColumnType("text");
@@ -90,10 +90,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdOutroLado")
-                        .IsUnique();
-
-                    b.ToTable("Carta");
+                    b.ToTable("Cartas");
                 });
 
             modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.CartaDeck", b =>
@@ -130,11 +127,66 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
                     b.ToTable("CartaDeck");
                 });
 
+            modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.CartaFace", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Cores")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CustoMana")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("IdCarta")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Lealdade")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NomeOriginal")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Poder")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Resistencia")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Texto")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TextoOriginal")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UrlCropImage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UrlImage")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdCarta");
+
+                    b.ToTable("CartaFace");
+                });
+
             modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.Deck", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("Capa")
+                        .HasColumnType("text");
 
                     b.Property<string>("Erros")
                         .HasColumnType("text");
@@ -179,15 +231,6 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.Carta", b =>
-                {
-                    b.HasOne("MagicEasyDeckBuilderAPI.Dominio.Entidades.Carta", "OutroLado")
-                        .WithOne()
-                        .HasForeignKey("MagicEasyDeckBuilderAPI.Dominio.Entidades.Carta", "IdOutroLado");
-
-                    b.Navigation("OutroLado");
-                });
-
             modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.CartaDeck", b =>
                 {
                     b.HasOne("MagicEasyDeckBuilderAPI.Dominio.Entidades.Carta", "Carta")
@@ -207,6 +250,17 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
                     b.Navigation("Deck");
                 });
 
+            modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.CartaFace", b =>
+                {
+                    b.HasOne("MagicEasyDeckBuilderAPI.Dominio.Entidades.Carta", "Carta")
+                        .WithMany("Faces")
+                        .HasForeignKey("IdCarta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Carta");
+                });
+
             modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.Deck", b =>
                 {
                     b.HasOne("MagicEasyDeckBuilderAPI.Dominio.Entidades.Usuario", "Usuario")
@@ -221,6 +275,8 @@ namespace MagicEasyDeckBuilderAPI.Infra.Migrations
             modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.Carta", b =>
                 {
                     b.Navigation("DeckCartas");
+
+                    b.Navigation("Faces");
                 });
 
             modelBuilder.Entity("MagicEasyDeckBuilderAPI.Dominio.Entidades.Deck", b =>

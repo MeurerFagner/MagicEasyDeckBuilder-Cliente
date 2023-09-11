@@ -1,10 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\_variaveis.scss" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.SassCompiler" Version="1.66.0" />
@@ -14,6 +18,86 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Shared\NavMenu.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Shared\MainLayout.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="wwwroot\css\app.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="wwwroot\css\_variaveis.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Styles\app.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\logo.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\100.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\1000000.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\2B.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\2G.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\2R.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\2U.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\2W.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\B.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\BASE.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\BG.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\BGP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\BP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\BR.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\BRP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\C.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\E.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\G.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\GP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\GU.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\GUP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\GW.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\GWP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\HALF.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\HR.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\HW.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\INFINITY.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\P.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\R.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\RG.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\RGP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\RP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\RW.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\RWP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\S.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\U.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\UB.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\UBP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\UP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\UR.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\URP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\W.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\WB.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\WBP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\WP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\WU.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\WUP.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\X.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\Y.svg" />
+    <None Include="wwwroot\images\symbols\mana-cost\Z.svg" />
+    <None Include="wwwroot\images\symbols\Planeswalker.svg" />
+    <None Include="wwwroot\images\symbols\Tap.svg" />
+    <None Include="wwwroot\images\symbols\Untap.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="shared\Footer.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MagicEasyDeckBuilderAPI.Core\MagicEasyDeckBuilderAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>

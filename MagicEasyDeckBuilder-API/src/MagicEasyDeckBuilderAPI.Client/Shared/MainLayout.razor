@@ -1,13 +1,26 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div>
+<div class="page-container">
+    <CascadingValue Value="this">
         <NavMenu />
-    </div>
-
-    <main>
-        <article class="content px-4">
+        <div class="container">
             @Body
-        </article>
-    </main>
+        </div>
+        <Footer />
+    </CascadingValue>
 </div>
+
+@code {
+    public UsuarioAuthViewModel? UsuarioLogado { get; private set;  } = null;
+
+    public void SetUsuarioLogado(UsuarioAuthViewModel? usuarioLogado)
+    {
+        UsuarioLogado = usuarioLogado;
+    }
+
+    public void RemoveUsuarioLogado()
+    {
+        UsuarioLogado = null;
+    }
+
+}
