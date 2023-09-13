@@ -18,36 +18,12 @@
                 <li class="nav-item">
                     <NavLink class="nav-link" href="saiba-mais">Saiba mais</NavLink>
                 </li>
-
-                @if (mainLayout.UsuarioLogado == null)
-                {
-                    <li class="nav-item">
-                        <NavLink class="nav-link" href="cadastro">Cadastre-se</NavLink>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary" href="login">Entrar</a>
-                    </li>
-
-                }
-                else
-                {
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)"> @mainLayout.UsuarioLogado.Nome </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-secondary" href="javascript:void(0)" @onclick="Logout">Logout</a>
-                    </li>
-
-                }
+                <DispalyLogin/>
             </ul>
         </div>
     </div>
 </nav>
 @code {
-    [CascadingParameter]
-    protected MainLayout mainLayout { get; set; }
-
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -55,19 +31,5 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        var usuarioLogado = await UsuarioService.GetUsuarioLogado();
-        mainLayout.SetUsuarioLogado(usuarioLogado);
-    }
-
-    private async Task Logout()
-    {
-        await UsuarioService.LimparDadosLogin();
-        mainLayout.RemoveUsuarioLogado();
-        NavManager.NavigateTo("/");
     }
 }

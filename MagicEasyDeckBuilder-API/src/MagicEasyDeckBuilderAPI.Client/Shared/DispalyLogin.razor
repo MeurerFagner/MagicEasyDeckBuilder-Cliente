@@ -1,0 +1,41 @@
+﻿@inject IUsuarioService UsuarioService
+@inject NavigationManager NavManager
+@inject AuthenticationStateProvider AuthProvider
+
+<AuthorizeView>
+    <Authorized>
+        <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"> @context.User.Identity!.Name </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link btn btn-secondary" href="javascript:void(0)" @onclick="Logout">Logout</a>
+        </li>
+
+    </Authorized>
+    <NotAuthorized>
+        <li class="nav-item">
+            <NavLink class="nav-link" href="cadastro">Cadastre-se</NavLink>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-primary" href="login">Entrar</a>
+        </li>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        var authState = await AuthProvider.GetAuthenticationStateAsync();
+
+    }
+
+    private void Logout()
+    {
+        UsuarioService.Logout();   
+
+        NavManager.NavigateTo("/");
+    }
+
+}

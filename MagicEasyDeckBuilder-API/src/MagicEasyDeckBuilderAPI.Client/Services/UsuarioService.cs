@@ -1,56 +1,39 @@
-﻿using MagicEasyDeckBuilderAPI.Core.ViewModel;
+﻿using Blazored.LocalStorage;
+using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Microsoft.JSInterop;
 
 namespace MagicEasyDeckBuilderAPI.Client.Services
 {
     public class UsuarioService : BaseService, IUsuarioService
     {
-        private  readonly IJSRuntime _js;
-        public UsuarioService(HttpClient httpClient, IJSRuntime js) : base(httpClient)
+        private AuthenticationStateProvider _stateProvider;
+        private ILocalStorageService _localStorageService;
+
+        public UsuarioService(HttpClient httpClient, AuthenticationStateProvider stateProvider, ILocalStorageService localStorageService) : base(httpClient)
         {
-            _js = js;
+            _stateProvider = stateProvider;
+            _localStorageService = localStorageService;
         }
 
-        public async Task<UsuarioAuthViewModel> CadastrarUsuario(UsuarioCadastroViewModel dadosCadastro)
+        public async Task CadastrarUsuario(UsuarioCadastroViewModel dadosCadastro)
         {
-            return await PostWithSucessReturn<UsuarioCadastroViewModel, UsuarioAuthViewModel>("usuario/cadastro", dadosCadastro);
+             await PostWithSucessReturn<UsuarioCadastroViewModel, UsuarioAuthViewModel>("usuario/cadastro", dadosCadastro);
         }
 
-        public async Task RegistrarLogin(UsuarioAuthViewModel usuario)
+        public async Task LogarUsuario(UsuarioLoginViewModel model)
         {
-            await _js.InvokeVoidAsync("localStorage.setItem", "id", usuario.Id);
-            await _js.InvokeVoidAsync("localStorage.setItem", "nome", usuario.Nome);
-            await _js.InvokeVoidAsync("localStorage.setItem", "email", usuario.Email);
-            await _js.InvokeVoidAsync("localStorage.setItem", "token", usuario.Token);
+            var usuarioLogado = await PostWithSucessReturn<UsuarioLoginViewModel,UsuarioAuthViewModel>("usuario/login", model);
+
+            await _localStorageService.SetItemAsync("token", usuarioLogado.Token);
+
+            await _stateProvider.GetAuthenticationStateAsync();
         }
 
-        public async Task<UsuarioAuthViewModel> LogarUsuario(UsuarioLoginViewModel model)
+        public async Task Logout()
         {
-            return await PostWithSucessReturn<UsuarioLoginViewModel,UsuarioAuthViewModel>("usuario/login", model);
-        }
+            await _localStorageService.RemoveItemAsync("token");
 
-        public async Task LimparDadosLogin()
-        {
-            await _js.InvokeVoidAsync("localStorage.clear");
-        }
-
-        public async Task<UsuarioAuthViewModel?> GetUsuarioLogado()
-        {
-            var nome = await _js.InvokeAsync<string>("localStorage.getItem", "nome");
-            if (string.IsNullOrEmpty(nome) || nome == "null")
-                return null;
-
-            var id = await _js.InvokeAsync<Guid>("localStorage.getItem", "id");
-            var email = await _js.InvokeAsync<string>("localStorage.getItem", "email");
-            var token = await _js.InvokeAsync<string>("localStorage.getItem", "token");
-
-            return new UsuarioAuthViewModel
-            {
-                Id = id,
-                Nome = nome,
-                Email = email,
-                Token = token
-            };
+            await _stateProvider.GetAuthenticationStateAsync();
         }
 
     }

@@ -12,7 +12,7 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
             _httpClient = httpClient;
         }
 
-        protected async Task<TReturn> PostWithSucessReturn<TModel,TReturn>(string pathUrl, TModel model)
+        protected async Task<TReturn> PostWithSucessReturn<TModel, TReturn>(string pathUrl, TModel model)
         {
             var result = await _httpClient.PostAsJsonAsync<TModel>(pathUrl, model);
             var dadosRetorno = await result.Content.ReadAsStringAsync();
@@ -29,6 +29,16 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
             }
 
             throw new Exception(dadosRetorno);
+        }
+
+        protected async Task PostAsync<TModel>(string pathUrl, TModel model)
+        {
+            var result = await _httpClient.PostAsJsonAsync<TModel>(pathUrl, model);
+            if (!result.IsSuccessStatusCode)
+            {
+                var dadosRetorno = await result.Content.ReadAsStringAsync();
+                throw new Exception(dadosRetorno);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@
 
 <div class="content-box">
     <h1 class="h1">Cadastro</h1>
-    <EditForm EditContext="editContext" OnValidSubmit="SubmitHandler">
+    <EditForm Model="model" OnValidSubmit="SubmitHandler">
         <DataAnnotationsValidator/>
         @if (!string.IsNullOrEmpty(errorMessage))
         {
@@ -42,28 +42,21 @@
 
 
 @code {
-    [CascadingParameter]
-    protected MainLayout mainLayout { get; set; }
-
-    EditContext? editContext;
     UsuarioCadastroViewModel model = new();
     string errorMessage = string.Empty;
 
     protected override void OnInitialized()
     {
-        editContext = new(model);
+        model = new();
     }
 
     protected async Task SubmitHandler()
     {
         try
         {
-            var dadosUsuarioAuth = await UsuarioService.CadastrarUsuario(model);
+            await UsuarioService.CadastrarUsuario(model);
 
-            await UsuarioService.RegistrarLogin(dadosUsuarioAuth);
-            mainLayout.SetUsuarioLogado(dadosUsuarioAuth);
-
-            NavManager.NavigateTo("/");
+            NavManager.NavigateTo("/login");
         }
         catch (Exception ex)
         {

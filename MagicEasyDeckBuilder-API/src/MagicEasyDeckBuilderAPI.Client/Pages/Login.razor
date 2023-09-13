@@ -7,7 +7,7 @@
 
 <div class="content-box">
     <h1 class="h1">Login</h1>
-    <EditForm EditContext="editContext" OnValidSubmit="Logar">
+    <EditForm Model="model" OnValidSubmit="Logar">
         <DataAnnotationsValidator />
         @if (!string.IsNullOrEmpty(errorMessage))
         {
@@ -32,34 +32,27 @@
 </div>
 
 @code {
-    [CascadingParameter]
-    protected MainLayout mainLayout { get; set; }
-
     UsuarioLoginViewModel model = new();
-    EditContext? editContext;
     string errorMessage = string.Empty;
 
     protected override void OnInitialized()
     {
-        editContext = new EditContext(model);
-
         base.OnInitialized();
+        model = new();
     }
 
     private async Task Logar()
     {
         try
         {
-            var dadosUsuarioAuth = await UsuarioService.LogarUsuario(model);
-
-            await UsuarioService.RegistrarLogin(dadosUsuarioAuth);
-            mainLayout.SetUsuarioLogado(dadosUsuarioAuth);
-
+            await UsuarioService.LogarUsuario(model);
+            
             NavManager.NavigateTo("/");
         }
         catch (Exception ex)
         {
             errorMessage = ex.Message;
+            model = new();
         }
     }
 }
