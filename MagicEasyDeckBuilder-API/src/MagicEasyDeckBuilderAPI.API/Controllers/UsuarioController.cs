@@ -2,6 +2,7 @@
 using MagicEasyDeckBuilderAPI.App.Services;
 using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using MagicEasyDeckBuilderAPI.Dominio.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -63,6 +64,13 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
             }
 
             return BadRequest(result.Mensagem);
+        }
+
+        [Authorize]
+        [HttpGet, Route("verifica-autenticacao")]
+        public async Task<IActionResult> VerificaAutenticacao()
+        {
+            return Ok();
         }
     }
 }

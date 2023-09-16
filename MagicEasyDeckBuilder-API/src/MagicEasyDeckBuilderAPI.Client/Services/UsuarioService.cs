@@ -1,6 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Microsoft.JSInterop;
+using System.Runtime.CompilerServices;
 
 namespace MagicEasyDeckBuilderAPI.Client.Services
 {
@@ -9,7 +10,7 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
         private AuthenticationStateProvider _stateProvider;
         private ILocalStorageService _localStorageService;
 
-        public UsuarioService(HttpClient httpClient, AuthenticationStateProvider stateProvider, ILocalStorageService localStorageService) : base(httpClient)
+        public UsuarioService(IHttpClientFactory httpClientFactory, AuthenticationStateProvider stateProvider, ILocalStorageService localStorageService) : base(httpClientFactory)
         {
             _stateProvider = stateProvider;
             _localStorageService = localStorageService;
@@ -36,5 +37,9 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
             await _stateProvider.GetAuthenticationStateAsync();
         }
 
+        public async Task VerificaAutenticacao()
+        {
+            await _httpClient.GetAsync("usuario/verifica-autenticacao");
+        }
     }
 }

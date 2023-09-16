@@ -7,5 +7,6 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
         Task CadastrarUsuario(UsuarioCadastroViewModel dadosCadastro);
         Task Logout();
         Task LogarUsuario(UsuarioLoginViewModel model);
+        Task VerificaAutenticacao();
     }
 }

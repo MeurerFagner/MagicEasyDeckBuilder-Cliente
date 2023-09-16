@@ -7,9 +7,9 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
     {
         protected readonly HttpClient _httpClient;
 
-        public BaseService(HttpClient httpClient)
+        public BaseService(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClientFactory.CreateClient("ServerApi");
         }
 
         protected async Task<TReturn> PostWithSucessReturn<TModel, TReturn>(string pathUrl, TModel model)

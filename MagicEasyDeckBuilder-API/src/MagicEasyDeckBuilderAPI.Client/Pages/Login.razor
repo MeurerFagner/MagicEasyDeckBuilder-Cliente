@@ -32,6 +32,10 @@
 </div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "returnUrl")]
+    public string ReturnUrl { get; set; }
+
     UsuarioLoginViewModel model = new();
     string errorMessage = string.Empty;
 
@@ -47,7 +51,7 @@
         {
             await UsuarioService.LogarUsuario(model);
             
-            NavManager.NavigateTo("/");
+            NavManager.NavigateTo($"/{ReturnUrl}");
         }
         catch (Exception ex)
         {

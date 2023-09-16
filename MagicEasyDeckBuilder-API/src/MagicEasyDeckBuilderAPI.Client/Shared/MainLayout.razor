@@ -7,18 +7,3 @@
     </div>
     <Footer />
 </div>
-
-@code {
-    public UsuarioAuthViewModel? UsuarioLogado { get; private set; } = null;
-
-    public void SetUsuarioLogado(UsuarioAuthViewModel? usuarioLogado)
-    {
-        UsuarioLogado = usuarioLogado;
-    }
-
-    public void RemoveUsuarioLogado()
-    {
-        UsuarioLogado = null;
-    }
-
-}

@@ -18,7 +18,11 @@ await builder.Build().RunAsync();
 static void InjectDependencies(WebAssemblyHostBuilder builder)
 {
     var baseAddress = builder.Configuration.GetValue<string>("UrlApi");
-    builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
+    builder.Services.AddTransient<AutheticationRequestDelegatingHandler>();
+    builder.Services
+        .AddHttpClient("ServerApi", client => client.BaseAddress = new Uri(baseAddress))
+        .AddHttpMessageHandler<AutheticationRequestDelegatingHandler>();
+    //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
     builder.Services.AddScoped<IUsuarioService, UsuarioService>();
     builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 

@@ -1,0 +1,26 @@
+﻿@inject NavigationManager NavManager
+
+<h3>Você não deveria star aqui</h3>
+<img src="https://cards.scryfall.io/art_crop/front/8/4/8493131c-0a7b-4be6-a8a2-0b425f4f67fb.jpg?1689996248" alt="Counter Spell Croped"/>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authstate = await AuthState;
+
+        if (authstate?.User?.Identity is null || !authstate.User.Identity.IsAuthenticated)
+        {
+            var returnUrl = NavManager.ToBaseRelativePath(NavManager.Uri);
+
+            if (string.IsNullOrEmpty(returnUrl))
+                NavManager.NavigateTo($"/login");
+            else
+                NavManager.NavigateTo($"/login?returnUrl={returnUrl}");
+        }
+    }
+
+
+}
