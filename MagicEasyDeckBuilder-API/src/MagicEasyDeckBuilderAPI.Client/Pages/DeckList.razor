@@ -1,7 +1,94 @@
 ﻿@page "/decks"
 @attribute [Authorize]
-<h3>DeckList</h3>
+@inject IDeckService _deckService
+@inject IJSRuntime JS
+
+<h3>Decks</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#novo-deck-modal">
+            <i class="bi bi-plus"></i>Novo Deck
+        </button>
+    <NovoDeckModal></NovoDeckModal>
+    </div>
+</div>
+<br />
+<div class="row">
+    @if (decks == null)
+    {
+        <p>Você ainda não possui nenhum deck registrado. Comece agora a planejar seus Decks</p>
+    }
+    else
+    {        
+        @foreach (var deck in decks)
+    {
+                <div class="col-md-4 mb-2">
+                    <div class="card @verifyClassErrorValidadtion(deck)">
+                        <div class="color-identity">
+                    @foreach (var color in deck.IdentidadeDeCor)
+                    {
+                                    <div class="mana-symbol"><ManaSymbol Tipo="@color" /></div>
+                    }
+                        </div>
+                        <img class="card-img-top" src="@getDeckCapa(deck)" />
+                        <div class="card-body">
+                            <h5 class="card-title">@deck.Nome</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">@deck.Formato.ToUpper()</h6>
+                    @if (deck.Erros?.Any() ?? false)
+                    {
+                                    <div id="error-list-@deck.Id" class="collapse error-list">
+                                        <ul>
+                                @foreach (var erro in deck.Erros)
+                                {
+                                                    <li>@erro</li>
+                                }
+                                        </ul>
+                                    </div>
+                    }
+                            <div class="acoes">
+                                <a class="btn btn-editar btn-primary" href="decks/@deck.Id">Editar</a>
+                        @if (deck.Erros?.Any() ?? false)
+                        {
+
+                                        <button class="btn-erro" data-bs-toggle="collapse" data-bs-target="#error-list-@deck.Id" type="button" aria-expanded="false" aria-controls="error-list-@deck.Id">
+                                            <i class="bi bi-exclamation-circle"></i>
+                                        </button>
+                        }
+                                <button type="button" class="btn-acoes"><i class="bi bi-three-dots-vertical"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    }
+    }
+</div>
+
+
 
 @code {
+    private IEnumerable<DeckViewModel> decks = new List<DeckViewModel>();
 
+    protected override async Task OnInitializedAsync()
+    {
+        decks = await _deckService.GetAllDecks();
+
+    }
+
+    private string getDeckCapa(DeckViewModel deck)
+    {
+        if (!string.IsNullOrEmpty(deck?.Capa))
+            return deck.Capa;
+
+        if (deck?.MainDeck?.Any() ?? false)
+            return deck.MainDeck.FirstOrDefault()!.Carta.UrlCropImage;
+
+        return "images/magic-card-back.png";
+    }
+
+    private string verifyClassErrorValidadtion(DeckViewModel deck)
+    {
+        return (deck.Erros?.Any() ?? false) ? "error-validation" : "";
+    }
 }

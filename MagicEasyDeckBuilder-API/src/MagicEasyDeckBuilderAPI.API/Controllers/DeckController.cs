@@ -40,7 +40,7 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
             if (!Guid.TryParse(idDeck, out var id))
                 return BadRequest("Id de deck inválido");
 
-            Deck deck = await _app.ObterDeckPorId(id);
+            var deck = await _app.ObterDeckPorId(id);
 
             if (deck == null)
                 return NotFound();
@@ -63,7 +63,7 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
 
                 var idDeck = await _app.IncluirDeck(idUsuario, model.Nome, model.Formato);
 
-                return Ok(new { idDeck });
+                return Ok(new IncluirDeckRetornoViewModel  { IdDeck = idDeck });
             }
             catch (Exception ex)
             {
@@ -110,7 +110,7 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
             }
 
         }
- 
+
         private Guid GetIdUsuario()
         {
             var idUser = HttpContext.User.Claims

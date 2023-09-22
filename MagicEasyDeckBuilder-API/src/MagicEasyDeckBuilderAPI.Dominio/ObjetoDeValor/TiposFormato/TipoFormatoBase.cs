@@ -8,7 +8,7 @@ using System.Text;
 
 namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
 {
-    public abstract class TipoFormatoBase
+    public  class TipoFormatoBase
     {
         public string Nome { get; private set; }
         protected TipoFormatoBase(string nome)
@@ -121,7 +121,7 @@ namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
                 TiposFormatoJogo.COMMANDER_LIVRE => new CommanderLivre(nome),
                 TiposFormatoJogo.BRAWL => new Brawl(nome),
                 TiposFormatoJogo.BRAWL_LIVRE => new BrawlLivre(nome),
-                _ => throw new ArgumentException($"Formato '{nome}' não é válido."),
+                _ => new TipoFormatoBase(nome)
             };
         }
 

@@ -1,0 +1,39 @@
+﻿<div class="modal fade" id="@Id" tabindex="-1" aria-labelledby="@label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content content-box">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="@label">@Titulo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @ModalBody
+            </div>
+            @if (ModalFooter != null)
+            {
+                <div class="modal-footer">
+                    @ModalFooter
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string Titulo { get; set; } = string.Empty;
+
+    [Parameter]
+    [EditorRequired]
+    public RenderFragment ModalBody { get; set; }
+
+    [Parameter]
+    public RenderFragment? ModalFooter { get; set; }
+
+    private string label => Id + "Label";
+
+}

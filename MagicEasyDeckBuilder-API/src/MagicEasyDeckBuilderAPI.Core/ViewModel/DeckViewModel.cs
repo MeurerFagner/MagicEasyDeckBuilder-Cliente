@@ -6,6 +6,7 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
     public class DeckViewModel
     {
         public Guid Id { get; set; }
+        public Guid IdUsuario { get; set; }
         public string Nome { get; set; }
         public string Formato { get; set; }
         public IEnumerable<string> IdentidadeDeCor { get; set; }

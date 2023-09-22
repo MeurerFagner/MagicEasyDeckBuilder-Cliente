@@ -1,12 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet');
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 html, body {
-  background: #000 !important;
+  background: #171717 !important;
   margin: 0;
   height: 100%;
   font-family: "Roboto", sans-serif !important;
-  font-style: normal;
-  color: #FFFFFF !important;
+  color: #fff !important;
 }
 
 .page-container {
@@ -18,19 +17,18 @@ html, body {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
-  background: #212121;
+  background: #303030;
   border: 2px solid #FFFFFF;
   border-radius: 40px;
 }
 
 .bg-preto {
-  background-color: #212121;
+  background-color: #303030;
 }
 
 .btn-primary {
   background-color: #5173CB;
-  color: #FFFFFF !important;
-  border-radius: 40px;
+  color: #fff !important;
   min-width: 100px;
 }
 .btn-primary:hover {
@@ -38,23 +36,26 @@ html, body {
 }
 
 .btn-secondary {
-  background-color: #F36B61;
-  color: #FFFFFF !important;
-  border-radius: 40px;
+  background-color: #f72b1c;
+  color: #fff !important;
   min-width: 100px;
 }
 .btn-secondary:hover {
-  background-color: #f72b1c;
+  background-color: #F36B61;
 }
 
 .btn-tertiary {
   background-color: #65B868;
-  color: #FFFFFF !important;
-  border-radius: 40px;
+  color: #fff !important;
   min-width: 100px;
 }
 .btn-tertiary:hover {
   background-color: #1ab91f;
+}
+
+.validation-message {
+  color: #F36B61;
+  font-size: 10px;
 }
 
 /*# sourceMappingURL=app.css.map */

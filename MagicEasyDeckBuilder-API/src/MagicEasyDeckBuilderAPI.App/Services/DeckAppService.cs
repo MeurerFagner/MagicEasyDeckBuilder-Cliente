@@ -84,21 +84,23 @@ namespace MagicEasyDeckBuilderAPI.App.Services
             return deck.Id;
         }
 
-        public async Task<Deck> ObterDeckPorId(Guid idDeck)
+        public async Task<DeckViewModel> ObterDeckPorId(Guid idDeck)
         {
-            return await _deckRepository.ObterDeck(idDeck);
+            var deck = await _deckRepository.ObterDeck(idDeck);
+            var deckViewModel = _mapper.Map<DeckViewModel>(deck);
+            return deckViewModel;
         }
 
         public async Task<IEnumerable<DeckViewModel>> ObterDecksPorUsuario(Guid idUser)
         {
             var decks = await _deckRepository.ObterDeckPorUsuario(idUser);
+            foreach (var deck in decks)
+            {
+                deck.ValidarDeck();
+            }
+            var decksViewModel = _mapper.Map<IEnumerable<DeckViewModel>>(decks);
 
-            return decks.Select(d => new DeckViewModel(
-                d.Id, 
-                d.Nome, 
-                d.TipoFormato.Nome, 
-                d.Cartas.SelectMany(c => c.Carta.IdentidadeDeCor).Distinct(), 
-                d.Capa));
+            return decksViewModel;
             
         }
 

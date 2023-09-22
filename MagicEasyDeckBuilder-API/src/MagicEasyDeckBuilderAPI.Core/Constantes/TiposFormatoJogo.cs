@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace MagicEasyDeckBuilderAPI.Core.Constantes
@@ -16,5 +18,19 @@ namespace MagicEasyDeckBuilderAPI.Core.Constantes
         public const string COMMANDER_LIVRE = "commander_livre"; 
         public const string BRAWL = "brawl";
         public const string BRAWL_LIVRE = "brawl_livre";
+        public const string STANDARD = "standard";
+        public const string FUTURE = "future";
+        public const string HISTORIC = "historic";
+        public const string HISTORIC_BRAWL = "historicbrawl";
+        public const string GLADIATOR = "gladiator";
+        public const string EXPLORER = "explorer";
+        public const string OATHBREAKER = "oathbreaker";
+        public const string PENNY = "penny";
+        public const string ALCHEMY = "alchemy";
+        public const string PAUPER_COMMANDER = "paupercommander";
+        public const string DUEL = "DUEL";
+        public const string OLDSCHOOL = "oldschool";
+        public const string PREMODERN = "premodern";
+        public const string PREDH = "predh";
     }
 }

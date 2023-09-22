@@ -1,0 +1,54 @@
+.color-identity {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  z-index: 10;
+}
+.color-identity .mana-symbol {
+  margin: 2px;
+  width: 5%;
+  min-width: 25px;
+  display: inline-block;
+}
+
+.card {
+  background-color: #303030;
+}
+.card .acoes {
+  width: 100%;
+}
+.card .acoes .btn-editar {
+  float: left;
+}
+.card .acoes .btn-acoes {
+  float: right;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+.card .acoes .btn-erro {
+  color: red;
+  float: left;
+  font-size: 25px;
+  margin-left: 10px;
+  background: none;
+  border: none;
+}
+
+.error-validation {
+  box-shadow: 0 0 5px 1px #f72b1c;
+}
+.error-validation .card-img-top {
+  filter: brightness(0.25) opacity(0.75);
+}
+
+.error-list {
+  color: #f72b1c;
+}
+
+/*# sourceMappingURL=DeckList.razor.css.map */

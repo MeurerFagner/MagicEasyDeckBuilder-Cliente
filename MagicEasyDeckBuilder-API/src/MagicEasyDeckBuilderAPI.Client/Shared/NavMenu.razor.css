@@ -3,13 +3,13 @@
 }
 .navbar .navbar-brand {
   font-family: "Lato", sans-serif;
-  color: #FFFFFF !important;
+  color: #fff !important;
 }
 .navbar .nav-link {
   color: rgba(255, 255, 255, 0.5);
 }
 .navbar .nav-link:hover {
-  color: #FFFFFF;
+  color: #fff;
 }
 
 /*# sourceMappingURL=NavMenu.razor.css.map */

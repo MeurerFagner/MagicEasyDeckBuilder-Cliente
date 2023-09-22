@@ -103,4 +103,12 @@
     <ProjectReference Include="..\MagicEasyDeckBuilderAPI.Core\MagicEasyDeckBuilderAPI.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="pages\DeckList.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="shared\modal\Modal.razor.scss" />
+  </ItemGroup>
+
 </Project>

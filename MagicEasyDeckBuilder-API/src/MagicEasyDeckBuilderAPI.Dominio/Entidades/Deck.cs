@@ -148,7 +148,7 @@ namespace MagicEasyDeckBuilderAPI.Dominio.Entidades
             return carta.Keywords != null && carta.Keywords.Contains(Keywords.PARCEIRO);
         }
 
-        private void ValidarDeck()
+        public void ValidarDeck()
         {
             if (TipoFormato == null)
                 return;

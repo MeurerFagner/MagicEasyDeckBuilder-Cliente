@@ -7,7 +7,11 @@ namespace MagicEasyDeckBuilderAPI.App.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<Deck, DeckViewModel>();
+            CreateMap<Deck, DeckViewModel>()
+                .ForMember(dest => dest.Formato, map => map.MapFrom(src => src.TipoFormato.Nome))
+                .ForMember(dest => dest.IdentidadeDeCor, map => map.MapFrom(src => src.MainDeck == null ? null : src.MainDeck.SelectMany(s => s.Carta.IdentidadeDeCor).Distinct()));
+
+            
             CreateMap<Carta, CartaViewModel>()
                 .ForMember(dst => dst.CustoMana, map => map.MapFrom(src => src.CustoMana.Custo));
             CreateMap<CartaDeck, CartaDeckViewModel>();

@@ -1,10 +1,10 @@
 global using Microsoft.AspNetCore.Components.Authorization;
-using MagicEasyDeckBuilderAPI.Client;
 using MagicEasyDeckBuilderAPI.Client.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Blazored.LocalStorage;
 using MagicEasyDeckBuilderAPI.Client.Providers;
+using MagicEasyDeckBuilderAPI.Client;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -22,9 +22,14 @@ static void InjectDependencies(WebAssemblyHostBuilder builder)
     builder.Services
         .AddHttpClient("ServerApi", client => client.BaseAddress = new Uri(baseAddress))
         .AddHttpMessageHandler<AutheticationRequestDelegatingHandler>();
-    //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
+
     builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+    builder.Services.AddScoped<IDeckService, DeckService>();
     builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+
+#if DEBUG
+    builder.Services.AddSassCompiler();
+#endif
 
     builder.Services.AddBlazoredLocalStorage();
 }
