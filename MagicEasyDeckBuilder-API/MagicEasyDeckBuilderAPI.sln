@@ -13,15 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Dominio.Test", "test\MagicEasyDeckBuilderAPI.Dominio.Test\MagicEasyDeckBuilderAPI.Dominio.Test.csproj", "{E13551C8-7F7C-47E8-BF14-54A86A3497EC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{ECF10E27-3D74-445E-810C-8930B0450127}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Dominio", "04-Dominio", "{ECF10E27-3D74-445E-810C-8930B0450127}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{480AE306-59DB-46CE-B390-D120C167332C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05-Infra", "05-Infra", "{480AE306-59DB-46CE-B390-D120C167332C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasydeckBuilderAPI.Infra.Test", "tests\MagicEasydeckBuilderAPI.Infra.Test\MagicEasydeckBuilderAPI.Infra.Test.csproj", "{DF00063E-C043-42A6-B889-CC09152FCF61}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{DD075418-5913-4F0F-B77B-4BADED627079}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-API", "02-API", "{DD075418-5913-4F0F-B77B-4BADED627079}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{C0802908-A79D-4472-A90F-D701602B8DC3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Application", "03-Application", "{C0802908-A79D-4472-A90F-D701602B8DC3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.App", "src\MagicEasyDeckBuilderAPI.App\MagicEasyDeckBuilderAPI.App.csproj", "{465A8A75-C403-4505-AAE7-CF5D60521F11}"
 EndProject
@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.App
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderApi.Api.Test", "test\MagicEasyDeckBuilderApi.Api.Test\MagicEasyDeckBuilderApi.Api.Test.csproj", "{D14FF9CF-2F11-4BAA-A03F-36D411150751}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{181DC14E-B844-4950-9AF7-D884DF8E74FD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Client", "01-Client", "{181DC14E-B844-4950-9AF7-D884DF8E74FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicEasyDeckBuilderAPI.Client", "src\MagicEasyDeckBuilderAPI.Client\MagicEasyDeckBuilderAPI.Client.csproj", "{9932A88B-C588-41A5-A8A7-AADA02879FC7}"
 EndProject
