@@ -1,0 +1,48 @@
+﻿<div class="carta @Carta?.Layout @faceCardClass()">
+    <img alt="@Carta?.NomeOriginal" src="@getImage()" />
+    @if (Carta?.Layout == "flip" || @Carta!.CardDuplo)
+    {
+        <button class="flip-card" @onclick="viraCarta">
+
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.7703 11.3734C11.9987 9.55219 10.2664 11.3734 5.38452 19.8722C6.17192 6.92161 11.6837 5.50516 18.7703 6.92161V3.07693L23.8097 9.75456L18.7703 16.6345V11.3734Z" fill="#212121" />
+                <path d="M11.9987 19.0627C18.7703 20.8839 20.5026 19.0627 25.3845 10.5639C24.5971 23.5145 19.0853 24.9309 11.9987 23.5145V27.3592L6.95933 20.6815L11.9987 13.8016V19.0627Z" fill="#212121" />
+            </svg>
+        </button>
+
+    }
+</div>
+
+@code {
+    [Parameter]
+    public CartaViewModel Carta { get; set; }
+
+    private bool? faceAlternativaAtiva;
+
+    private string getImage()
+    {
+        if (Carta!.CardDuplo && Carta!.Layout != "flip")
+        {
+            if (faceAlternativaAtiva.HasValue && faceAlternativaAtiva.Value)
+                return Carta.Faces.Last().UrlImage;
+
+            return Carta.Faces.First().UrlImage;
+        }
+
+        return Carta.UrlImage;
+    }
+
+    private void viraCarta()
+    {
+        if (faceAlternativaAtiva.HasValue)
+            faceAlternativaAtiva = !faceAlternativaAtiva;
+        else
+            faceAlternativaAtiva = true;
+        StateHasChanged();
+    }
+
+    private string faceCardClass()
+    {
+        return faceAlternativaAtiva.HasValue ? faceAlternativaAtiva.Value ? "back" : "front" : "";
+    }
+}

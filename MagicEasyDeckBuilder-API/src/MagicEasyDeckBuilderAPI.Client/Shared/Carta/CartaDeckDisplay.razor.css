@@ -1,0 +1,116 @@
+.carta-deck {
+  height: 2rem;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  /*&:has(.info-carta:hover) {
+      .valor, .pesquisar {
+          display: none;
+      }
+
+      .remover {
+          display: block;
+      }
+  }*/
+}
+.carta-deck .quantidade {
+  height: 2rem;
+  padding: 0 8px;
+  position: absolute;
+  border-radius: 135%/10rem;
+  border: white solid 2px;
+  width: 100px;
+  cursor: pointer;
+  z-index: 0;
+}
+.carta-deck .quantidade .valor {
+  display: block;
+}
+.carta-deck .quantidade .remover, .carta-deck .quantidade .pesquisar {
+  display: none;
+}
+.carta-deck .quantidade:hover .remover, .carta-deck .quantidade:hover .valor {
+  display: none;
+}
+.carta-deck .quantidade:hover .pesquisar {
+  display: block;
+}
+.carta-deck .info-carta {
+  cursor: pointer;
+  z-index: 1;
+  height: 100%;
+  padding: 0 10px;
+  display: inline-flex;
+  border: white solid 2px;
+  margin-left: 30px;
+  width: 100%;
+  border-radius: 30%/10rem;
+}
+.carta-deck .info-carta .cores {
+  height: 70%;
+  margin-left: auto;
+}
+.carta-deck .info-carta.cor-c {
+  background-color: #E3D9D0;
+  color: #303030;
+}
+.carta-deck .info-carta.cor-b {
+  background-color: #6F6969;
+}
+.carta-deck .info-carta.cor-u {
+  background-color: #436CD2;
+}
+.carta-deck .info-carta.cor-r {
+  background-color: #F54033;
+}
+.carta-deck .info-carta.cor-g {
+  background-color: #3fbd44;
+}
+.carta-deck .info-carta.cor-w {
+  background-color: #fff;
+  color: #303030;
+}
+.carta-deck .info-carta.cor-mult {
+  background-color: #e0b752;
+}
+.carta-deck .info-carta.cor-wu {
+  background-image: linear-gradient(to right, #436CD2 50%, #fff 80%);
+}
+.carta-deck .info-carta.cor-bu {
+  background-image: linear-gradient(to right, #436CD2 50%, #6F6969 80%);
+}
+.carta-deck .info-carta.cor-br {
+  background-image: linear-gradient(to right, #6F6969 50%, #F54033 80%);
+}
+.carta-deck .info-carta.cor-bg {
+  background-image: linear-gradient(to right, #6F6969 50%, #3fbd44 80%);
+}
+.carta-deck .info-carta.cor-gr {
+  background-image: linear-gradient(to right, #F54033 50%, #3fbd44 80%);
+}
+.carta-deck .info-carta.cor-gw {
+  background-image: linear-gradient(to right, #3fbd44 50%, #fff 80%);
+}
+.carta-deck .info-carta.cor-bw {
+  background-image: linear-gradient(to right, #6F6969 50%, #fff 80%);
+}
+.carta-deck .info-carta.cor-rw {
+  background-image: linear-gradient(to right, #F54033 50%, #fff 80%);
+}
+.carta-deck .info-carta.cor-ru {
+  background-image: linear-gradient(to right, #436CD2 50%, #F54033 80%);
+}
+.carta-deck .info-carta.cor-gu {
+  background-image: linear-gradient(to right, #436CD2 50%, #3fbd44 80%);
+}
+.carta-deck.comandante .info-carta {
+  height: 130%;
+}
+.carta-deck.erro .quantidade {
+  color: red;
+}
+.carta-deck.erro .info-carta {
+  border-color: red;
+}
+
+/*# sourceMappingURL=CartaDeckDisplay.razor.css.map */

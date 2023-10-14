@@ -10,6 +10,6 @@ namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
         {
         }
 
-        protected override int GetLimiteMinimoDeCartas() => 100;
+        public override int GetLimiteMinimoDeCartas() => 100;
     }
 }

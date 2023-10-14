@@ -10,6 +10,7 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
         public BaseService(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient("ServerApi");
+            _httpClient.Timeout = TimeSpan.FromMinutes(3);
         }
 
         protected async Task<TReturn> PostWithSucessReturn<TModel, TReturn>(string pathUrl, TModel model)

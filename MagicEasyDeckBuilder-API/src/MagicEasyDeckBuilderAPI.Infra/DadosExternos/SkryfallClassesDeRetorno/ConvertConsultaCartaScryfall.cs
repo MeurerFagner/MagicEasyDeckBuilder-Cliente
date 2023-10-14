@@ -41,7 +41,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos.SkryfallClassesDeRetorno
                 IdentidadeDeCor = cartaData.color_identity,
                 CustoMana = new CustoMana(cartaData.mana_cost),
                 Keywords = cartaData.keywords,
-                UrlImage = cartaData.image_uris?.normal,
+                UrlImage = cartaData.image_uris?.border_crop,
                 UrlCropImage = cartaData.image_uris?.art_crop,
                 UrlApi = cartaData.Uri,
                 Poder = cartaData.power,
@@ -64,7 +64,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos.SkryfallClassesDeRetorno
                     Tipo = ladoUm.type_line,
                     Cores = ladoUm.colors, 
                     CustoMana = new CustoMana(ladoUm.mana_cost),
-                    UrlImage = ladoUm?.image_uris?.normal,
+                    UrlImage = ladoUm?.image_uris?.border_crop,
                     UrlCropImage = ladoUm.image_uris?.art_crop,
                     Poder = ladoUm.power,
                     Resistencia = ladoUm.toughness,
@@ -80,7 +80,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos.SkryfallClassesDeRetorno
                     Tipo = ladoDois.type_line,
                     Cores = ladoDois.colors,
                     CustoMana = new CustoMana(ladoDois.mana_cost),
-                    UrlImage = ladoDois?.image_uris?.normal,
+                    UrlImage = ladoDois?.image_uris?.border_crop,
                     UrlCropImage = ladoDois.image_uris?.art_crop,
                     Poder = ladoDois.power,
                     Resistencia = ladoDois.toughness,
@@ -110,9 +110,10 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos.SkryfallClassesDeRetorno
         {
             return new EdicaoDTO
             {
-                Code = set.code,
+                Tipo = set.set_type,
+                Sigla = set.code,
                 Nome = set.name,
-                IconUriSvg = set.icon_svg_uri
+                IconUrl = set.icon_svg_uri
             };
         }
     }

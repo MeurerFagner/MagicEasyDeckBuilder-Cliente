@@ -5,6 +5,7 @@ using MagicEasyDeckBuilderAPI.Infra;
 using MagicEasyDeckBuilderAPI.Infra.DadosExternos;
 using MagicEasyDeckBuilderAPI.Infra.Repositorio;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace MagicEasyDeckBuilderAPI.API.Configuration
 {
@@ -21,6 +22,11 @@ namespace MagicEasyDeckBuilderAPI.API.Configuration
             services.AddScoped<TokenService>();
             services.AddScoped<Context>();
 
+            services.AddHttpClient("scryfall",c =>
+            {
+                c.BaseAddress = new Uri("https://api.scryfall.com/");
+            });
+            
             services.AddAutoMapper(m => m.AddProfile(new MapperProfile()));
         }
     }

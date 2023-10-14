@@ -25,6 +25,7 @@ static void InjectDependencies(WebAssemblyHostBuilder builder)
 
     builder.Services.AddScoped<IUsuarioService, UsuarioService>();
     builder.Services.AddScoped<IDeckService, DeckService>();
+    builder.Services.AddScoped<ICartaService, CartaService>();
     builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 #if DEBUG

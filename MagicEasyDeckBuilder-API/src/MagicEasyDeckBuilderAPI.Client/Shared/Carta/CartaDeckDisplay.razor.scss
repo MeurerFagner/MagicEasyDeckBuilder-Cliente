@@ -1,0 +1,149 @@
+@import "../../Styles/_variaveis.scss";
+
+.carta-deck {
+    height: 2rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    .quantidade {
+        height: 2rem;
+        padding: 0 8px;
+        position: absolute;
+        border-radius: 135% / calc(5rem *2);
+        border: white solid 2px;
+        width: 100px;
+        cursor: pointer;
+        z-index: 0;
+
+        .valor {
+            display: block;
+        }
+
+        .remover, .pesquisar {
+            display: none;
+        }
+
+        &:hover {
+            .remover, .valor {
+                display: none;
+            }
+
+            .pesquisar {
+                display: block;
+            }
+        }
+    }
+
+    .info-carta {
+        cursor: pointer;
+        z-index: 1;
+        height: 100%;
+        padding: 0 10px;
+        display: inline-flex;
+        border: white solid 2px;
+        margin-left: 30px;
+        width: 100%;
+        border-radius: 30% / calc(5rem *2);
+
+        .cores {
+            height: 70%;
+            margin-left: auto;
+        }
+
+        &.cor-c {
+            background-color: $colorless-mana;
+            color: $cor-preto;
+        }
+
+        &.cor-b {
+            background-color: $black-mana;
+        }
+
+        &.cor-u {
+            background-color: $blue-mana;
+        }
+
+        &.cor-r {
+            background-color: $red-mana;
+        }
+
+        &.cor-g {
+            background-color: $green-mana;
+        }
+
+        &.cor-w {
+            background-color: $white-mana;
+            color: $cor-preto;
+        }
+
+        &.cor-mult {
+            background-color: $mult-color-mana;
+        }
+
+        &.cor-wu {
+            background-image: linear-gradient(to right, $blue-mana 50%, $white-mana 80%);
+        }
+
+        &.cor-bu {
+            background-image: linear-gradient(to right, $blue-mana 50%, $black-mana 80%);
+        }
+
+        &.cor-br {
+            background-image: linear-gradient(to right, $black-mana 50%, $red-mana 80%);
+        }
+
+        &.cor-bg {
+            background-image: linear-gradient(to right, $black-mana 50%, $green-mana 80%);
+        }
+
+        &.cor-gr {
+            background-image: linear-gradient(to right, $red-mana 50%, $green-mana 80%);
+        }
+
+        &.cor-gw {
+            background-image: linear-gradient(to right, $green-mana 50%, $white-mana 80%);
+        }
+
+        &.cor-bw {
+            background-image: linear-gradient(to right, $black-mana 50%, $white-mana 80%);
+        }
+
+        &.cor-rw {
+            background-image: linear-gradient(to right, $red-mana 50%, $white-mana 80%);
+        }
+
+        &.cor-ru {
+            background-image: linear-gradient(to right, $blue-mana 50%, $red-mana 80%);
+        }
+
+        &.cor-gu {
+            background-image: linear-gradient(to right, $blue-mana 50%, $green-mana 80%);
+        }
+    }
+
+    /*&:has(.info-carta:hover) {
+        .valor, .pesquisar {
+            display: none;
+        }
+
+        .remover {
+            display: block;
+        }
+    }*/
+
+
+    &.comandante .info-carta {
+        height: 130%;
+    }
+
+    &.erro {
+        .quantidade {
+            color: red;
+        }
+
+        .info-carta {
+            border-color: red;
+        }
+    }
+}

@@ -13,8 +13,10 @@ namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
         public Brawl(string nome) : base(nome)
         {
         }
+        public override bool UsaComandante() => true;
+
         protected override int GetLimiteDeCopias() => 1;
-        protected override int GetQuantidadeSideDeck() => 0;
+        public override int GetQuantidadeSideDeck() => 0;
 
         public override RetornoValidacao ValidaDeck(Deck deck)
         {

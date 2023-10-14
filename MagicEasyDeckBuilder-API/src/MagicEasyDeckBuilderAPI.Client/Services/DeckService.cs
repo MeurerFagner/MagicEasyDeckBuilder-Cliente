@@ -37,13 +37,13 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
 
             var jsonObj = JsonSerializer.Deserialize<IncluirDeckRetornoViewModel>(result);
 
-            return jsonObj.IdDeck;
+            return jsonObj!.IdDeck;
         }
 
         public async Task<DeckViewModel> AdicionarCarta(Guid idDeck, string idScryFall, string tipo)
         {
-            var addCartaviewModel = new AdicionaCartaViewModel(idDeck,idScryFall,tipo);
-            var deck = await PostWithSucessReturn<AdicionaCartaViewModel, DeckViewModel>($"{DECK_CONTROLLER}", addCartaviewModel);
+            var addCartaviewModel = new AdicionaCartaViewModel(idDeck, idScryFall, tipo);
+            var deck = await PostWithSucessReturn<AdicionaCartaViewModel, DeckViewModel>($"{DECK_CONTROLLER}/adicionar-carta", addCartaviewModel);
 
             return deck;
         }
@@ -53,14 +53,17 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
             throw new NotImplementedException();
         }
 
-        public Task<DeckViewModel> MoverCarta(Guid idDeck, Guid idCarta, string tipoDeckOrigem, string tipodeckDestino, Guid idUsuario)
+        public Task<DeckViewModel> MoverCarta(Guid idDeck, Guid idCarta, string tipoDeckOrigem, string tipodeckDestino)
         {
             throw new NotImplementedException();
         }
 
-        public Task<DeckViewModel> RemoverCarta(Guid idDeck, Guid idCarta, string tipoDeck, Guid idUsuario)
+        public async Task<DeckViewModel> RemoverCarta(Guid idDeck, Guid idCarta, string tipoDeck)
         {
-            throw new NotImplementedException();
+            var removeCartaviewModel = new RemoverCartaViewModel(idDeck, idCarta, tipoDeck);
+            var deck = await PostWithSucessReturn<RemoverCartaViewModel, DeckViewModel>($"{DECK_CONTROLLER}/remover-carta", removeCartaviewModel);
+
+            return deck;
         }
 
     }

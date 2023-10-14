@@ -35,20 +35,27 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
         [HttpGet, Route("{idDeck}")]
         public async Task<IActionResult> Get(string idDeck)
         {
-            var idUser = GetIdUsuario();
+            try
+            {
+                var idUser = GetIdUsuario();
 
-            if (!Guid.TryParse(idDeck, out var id))
-                return BadRequest("Id de deck inválido");
+                if (!Guid.TryParse(idDeck, out var id))
+                    return BadRequest("Id de deck inválido");
 
-            var deck = await _app.ObterDeckPorId(id);
+                var deck = await _app.ObterDeckPorId(id);
 
-            if (deck == null)
-                return NotFound();
+                if (deck == null)
+                    return NotFound();
 
-            if (deck.IdUsuario != idUser)
-                return Forbid();
+                if (deck.IdUsuario != idUser)
+                    return Forbid();
 
-            return Ok(deck);
+                return Ok(deck);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
@@ -82,6 +89,23 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
                 var idUsuario = GetIdUsuario();
 
                 var deck = await _app.AdicionarCarta(idUsuario, model.IdDeck, model.IdScryFall, model.Tipo);
+
+                return Ok(deck);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost, Route("remover-carta")]
+        public async Task<IActionResult> RemoverCarta([FromBody] RemoverCartaViewModel model)
+        {
+            try
+            {
+                var idUsuario = GetIdUsuario();
+
+                var deck = await _app.RemoverCarta(model.IdDeck, model.IdCarta, model.Tipo, idUsuario);
 
                 return Ok(deck);
             }

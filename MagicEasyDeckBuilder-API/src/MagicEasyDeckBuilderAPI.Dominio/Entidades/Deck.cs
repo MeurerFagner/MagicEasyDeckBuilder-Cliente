@@ -19,9 +19,10 @@ namespace MagicEasyDeckBuilderAPI.Dominio.Entidades
         public TipoFormatoBase TipoFormato { get; set; }
         public IEnumerable<string> Erros { get; private set; }
         public virtual ICollection<CartaDeck> Cartas { get; set; }
-        public IEnumerable<CartaDeck> MainDeck => Cartas.Where(c => c.TipoDeck == TipoDeckCarta.MainDeck);
-        public IEnumerable<CartaDeck> SideDeck => Cartas.Where(c => c.TipoDeck == TipoDeckCarta.SideDeck);
-        public IEnumerable<CartaDeck> MaybeDeck => Cartas.Where(c => c.TipoDeck == TipoDeckCarta.MaybeDeck);
+        public List<CartaDeck> MainDeck => Cartas?.ToList().Where(c => c.TipoDeck == TipoDeckCarta.MainDeck)?.ToList();
+        public List<CartaDeck> SideDeck => Cartas?.ToList().Where(c => c.TipoDeck == TipoDeckCarta.SideDeck)?.ToList();
+        public List<CartaDeck> MaybeDeck => Cartas?.ToList().Where(c => c.TipoDeck == TipoDeckCarta.MaybeDeck)?.ToList();
+        public List<string> IdentidadeDeCor => MainDeck?.SelectMany(s => s.Carta.IdentidadeDeCor ?? new List<string>())?.Distinct()?.ToList();
 
         public Deck()
         {
@@ -90,9 +91,6 @@ namespace MagicEasyDeckBuilderAPI.Dominio.Entidades
 
             if (tipoDeck != TipoDeckCarta.MaybeDeck)
                 ValidarDeck();
-
-            if (string.IsNullOrEmpty(Capa))
-                Capa = carta.UrlCropImage;
         }
 
         public void RemoverCartaMainDeck(Carta carta) => RemoverCarta(carta, TipoDeckCarta.MainDeck);

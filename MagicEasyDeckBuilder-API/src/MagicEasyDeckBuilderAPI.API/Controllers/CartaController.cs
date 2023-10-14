@@ -1,6 +1,7 @@
 ﻿using MagicEasyDeckBuilderAPI.App.Services;
 using MagicEasyDeckBuilderAPI.Core.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MagicEasyDeckBuilderAPI.API.Controllers
@@ -17,7 +18,8 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
             _app = app;
         }
 
-        [HttpGet]
+        [HttpPost]
+        [Route("buscar-cartas")]
         public async Task<IActionResult> BuscaCartas([FromBody] FiltroBuscaCartaViewModel filtros)
         {
             var cartas = await _app.BuscaCartas(filtros);
@@ -58,7 +60,7 @@ namespace MagicEasyDeckBuilderAPI.API.Controllers
         {
             var edicoes = await _app.BuscaEdicoes();
 
-            return Ok(edicoes);
+            return Ok(edicoes.OrderBy(o => o.Nome));
         }
 
     }

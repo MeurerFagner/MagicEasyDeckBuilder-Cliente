@@ -2,15 +2,10 @@
 {
     public class EdicaoViewModel
     {
-        public string Sigla { get; private set; }
-        public string Nome { get; private set; }
-        public string IconUrl { get; private set; }
+        public string Tipo { get; set; }
+        public string Sigla { get; set; }
+        public string Nome { get; set; }
+        public string IconUrl { get; set; }
 
-        public EdicaoViewModel(string nome, string sigla, string iconUrl)
-        {
-            IconUrl = iconUrl;
-            Nome = nome;
-            Sigla = sigla;
-        }
     }
 }

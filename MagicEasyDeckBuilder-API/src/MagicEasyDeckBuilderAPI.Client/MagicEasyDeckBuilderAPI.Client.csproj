@@ -111,4 +111,24 @@
     <UpToDateCheckInput Remove="shared\modal\Modal.razor.scss" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="pages\DeckEdit.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="shared\modal\FiltroModal.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="shared\carta\CartaDisplay.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="shared\carta\CartaDeckDisplay.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="shared\carta\ManaSymbol.razor.scss" />
+  </ItemGroup>
+
 </Project>

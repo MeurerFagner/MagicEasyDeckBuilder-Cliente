@@ -16,7 +16,16 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 {
     public class ScryfallApiService : IScryfallApiService
     {
-        private const string URL_SCRYFALL_API = "https://api.scryfall.com";
+        private readonly HttpClient _httpClient;
+
+        public ScryfallApiService()
+        {
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri("https://api.scryfall.com")
+            };
+        }
+
         public async Task<ConsultaResponseDTO> BuscaCartas(
             string nome = null,
             string formato = null,
@@ -32,67 +41,63 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
             int? page = null
             )
         {
-            using (var httpClient = new HttpClient())
+
+            var query = HttpUtility.ParseQueryString(string.Empty);
+
+            var filtros = nome;
+            filtros = AdicionaFiltro(filtros, "f:", formato);
+            filtros = AdicionaFiltro(filtros, "r:", raridade);
+            filtros = AdicionaFiltro(filtros, "e:", edicao);
+            filtros = AdicionaFiltro(filtros, "m=", custoMana);
+            filtros = AdicionaFiltro(filtros, "cmc=", valorMana.ToString());
+            filtros = AdicionaFiltro(filtros, "id:", identidadeDeCor);
+            filtros = AdicionaFiltro(filtros, "color" + tipoFiltroCor, filtroDeCor);
+
+            if (tipos != null)
             {
-                var builder = new UriBuilder($"{URL_SCRYFALL_API}/cards/search");
-                builder.Port = -1;
-                var query = HttpUtility.ParseQueryString(string.Empty);
-
-                var filtros = nome;
-                filtros = AdicionaFiltro(filtros, "f:", formato);
-                filtros = AdicionaFiltro(filtros, "r:", raridade);
-                filtros = AdicionaFiltro(filtros, "e:", edicao);
-                filtros = AdicionaFiltro(filtros, "m=", custoMana);
-                filtros = AdicionaFiltro(filtros, "cmc=", valorMana.ToString());
-                filtros = AdicionaFiltro(filtros, "id:", identidadeDeCor);
-                filtros = AdicionaFiltro(filtros, "color"+tipoFiltroCor, filtroDeCor);
-
-                if (tipos != null)
+                foreach (var tipo in tipos)
                 {
-                    foreach (var tipo in tipos)
-                    {
-                        filtros = AdicionaFiltro(filtros, "t:", tipo);
-                    }
+                    filtros = AdicionaFiltro(filtros, "t:", tipo);
                 }
-
-                if (texto != null)
-                {
-                    foreach (var palavra in texto.Split(" "))
-                    {
-                        filtros = AdicionaFiltro(filtros, "o:", palavra);
-                    }
-                }
-
-                if (string.IsNullOrEmpty(filtros))
-                    throw new ArgumentException("Necessário pelo menos um filtro para buscar cartas");
-
-                query["format"] = "json";
-                query["include_extras"] = "false";
-                query["include_multilingual"] = "false";
-                query["order"] = "name";
-                query["page"] = page.HasValue ? page.Value.ToString() : "1";
-                query["unique"] = "cards";
-                query["q"] = filtros.ToString();
-
-                builder.Query = query.ToString();
-                var url = builder.ToString();
-
-                var httpResponse = await httpClient.GetAsync(url);
-
-                if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
-                    return null;
-
-                if (!httpResponse.IsSuccessStatusCode)
-                    throw new Exception($"Erro {httpResponse.StatusCode} ao buscar cartas em {url}.");
-
-                var content = await httpResponse.Content.ReadAsStringAsync();
-
-                var skryFallReturn = JsonConvert.DeserializeObject<Root>(content);
-
-                var dto = ConvertConsultaCartaScryfall.Map(skryFallReturn);
-
-                return dto;
             }
+
+            if (texto != null)
+            {
+                foreach (var palavra in texto.Split(" "))
+                {
+                    filtros = AdicionaFiltro(filtros, "o:", palavra);
+                }
+            }
+
+            if (string.IsNullOrEmpty(filtros))
+                throw new ArgumentException("Necessário pelo menos um filtro para buscar cartas");
+
+            query["format"] = "json";
+            query["include_extras"] = "false";
+            query["include_multilingual"] = "false";
+            query["order"] = "name";
+            query["page"] = page.HasValue ? page.Value.ToString() : "1";
+            query["unique"] = "cards";
+            query["q"] = filtros.ToString();
+
+            var queryURL = query.ToString();
+            var url = $"cards/search?{queryURL}";
+
+            var httpResponse = await _httpClient.GetAsync(url);
+
+            if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
+                return null;
+
+            if (!httpResponse.IsSuccessStatusCode)
+                throw new Exception($"Erro {httpResponse.StatusCode} ao buscar cartas em {url}.");
+
+            var content = await httpResponse.Content.ReadAsStringAsync();
+
+            var skryFallReturn = JsonConvert.DeserializeObject<Root>(content);
+
+            var dto = ConvertConsultaCartaScryfall.Map(skryFallReturn);
+
+            return dto;
 
         }
 
@@ -103,7 +108,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
             if (!string.IsNullOrEmpty(valor))
             {
                 if (!string.IsNullOrEmpty(filtroAtual))
-                    filtro.Append(" ");
+                    filtro.Append(' ');
 
                 filtro.Append(tipo);
                 filtro.Append(valor);
@@ -114,8 +119,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
         public async Task<Carta> BucaCartaPorNome(string nome)
         {
-            using var httpClient = new HttpClient();
-            var builder = new UriBuilder($"{URL_SCRYFALL_API}/cards/named");
+            var builder = new UriBuilder($"cards/search");
             builder.Port = -1;
             var query = HttpUtility.ParseQueryString(string.Empty);
 
@@ -125,7 +129,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
             var url = builder.ToString();
 
-            var httpResponse = await httpClient.GetAsync(url);
+            var httpResponse = await _httpClient.GetAsync(url);
 
             if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
                 return null;
@@ -144,11 +148,9 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
         public async Task<Carta> BucaCartaPorIdScryFall(string idScryfall)
         {
-            using var httpClient = new HttpClient();
+            var url = $"cards/{idScryfall}";
 
-            var url = $"{URL_SCRYFALL_API}/cards/{idScryfall}";
-
-            var httpResponse = await httpClient.GetAsync(url);
+            var httpResponse = await _httpClient.GetAsync(url);
 
             if (httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound)
                 return null;
@@ -167,11 +169,9 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
         public async Task<IEnumerable<EdicaoDTO>> BuscaEdicoes()
         {
-            using var httpClient = new HttpClient();
+            var url = $"sets";
 
-            var url = $"{URL_SCRYFALL_API}/sets";
-
-            var httpResponse = await httpClient.GetAsync(url);
+            var httpResponse = await _httpClient.GetAsync(url);
 
             if (!httpResponse.IsSuccessStatusCode)
                 throw new Exception($"Erro {httpResponse.StatusCode} ao buscar subtipos em {url}.");
@@ -217,11 +217,9 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
         private async Task<IEnumerable<string>> BuscaSubTipos(string tipo)
         {
-            using var httpClient = new HttpClient();
+            var url = $"catalog/{tipo}-types";
 
-            var url = $"{URL_SCRYFALL_API}/catalog/{tipo}-types";
-
-            var httpResponse = await httpClient.GetAsync(url);
+            var httpResponse = await _httpClient.GetAsync(url);
 
             if (!httpResponse.IsSuccessStatusCode)
                 throw new Exception($"Erro {httpResponse.StatusCode} ao buscar subtipos em {url}.");
@@ -235,8 +233,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
         public async Task<IEnumerable<string>> BuscaNomesDeCarta(string nome)
         {
-            using var httpClient = new HttpClient();
-            var builder = new UriBuilder($"{URL_SCRYFALL_API}/cards/autocomplete");
+            var builder = new UriBuilder($"cards/search");
             builder.Port = -1;
             var query = HttpUtility.ParseQueryString(string.Empty);
 
@@ -246,7 +243,7 @@ namespace MagicEasyDeckBuilderAPI.Infra.DadosExternos
 
             var url = builder.ToString();
 
-            var httpResponse = await httpClient.GetAsync(url);
+            var httpResponse = await _httpClient.GetAsync(url);
 
             if (!httpResponse.IsSuccessStatusCode)
                 throw new Exception($"Erro {httpResponse.StatusCode} ao buscar cartas em {url}.");

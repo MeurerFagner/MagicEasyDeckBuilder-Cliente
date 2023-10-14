@@ -94,10 +94,12 @@ namespace MagicEasyDeckBuilderAPI.App.Services
         public async Task<IEnumerable<DeckViewModel>> ObterDecksPorUsuario(Guid idUser)
         {
             var decks = await _deckRepository.ObterDeckPorUsuario(idUser);
-            foreach (var deck in decks)
+            Parallel.ForEach(decks, (deck) =>
             {
                 deck.ValidarDeck();
-            }
+
+            });
+            
             var decksViewModel = _mapper.Map<IEnumerable<DeckViewModel>>(decks);
 
             return decksViewModel;

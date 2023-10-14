@@ -1,0 +1,136 @@
+﻿@inject ICartaService _cartaService
+@using MagicEasyDeckBuilderAPI.Core.Constantes
+
+<Modal Id="filtros" Titulo="Filtros">
+    <ModalBody>
+        <EditForm Model="@Filtros">
+            <div class="mb-2">
+                <label class="form-label" for="nome">Nome da Carta</label>
+                <InputText id="nome" class="form-control" @bind-Value="Filtros.Nome" />
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="tipo">Tipos</label>
+                <select id="tipo" class="form-control" placeholder="- selecione um tipo -">
+                    <option value="">-selecione um tipo-</option>
+
+                    @foreach (var grupos in tipos!)
+                    {
+                        <optgroup label="@grupos.Categoria">
+                            @foreach (var tipo in grupos.Tipos)
+                            {
+                                <option>@tipo</option>
+                            }
+                        </optgroup>
+                    }
+                </select>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="edicao">Edição</label>
+                <InputSelect id="edicao" class="form-control" @bind-Value="Filtros.Edicao">
+                    <option value="">-selecione uma Edicao-</option>
+                    @foreach (var tipoEdicao in edicoes!.Select(s => s.Tipo).Distinct())
+                    {
+                        <optgroup label="@tipoEdicao">
+                            @foreach (var edicao in edicoes!.Where(w => w.Tipo == tipoEdicao))
+                            {
+                                <option value="@edicao.Sigla">
+                                    <img alt="@edicao.Nome" src="@edicao.IconUrl" /> @edicao.Nome
+                                </option>
+                            }
+                        </optgroup>
+                    }
+                </InputSelect>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" for="raridade">Raridade</label>
+                <InputSelect id="raridade" class="form-control" @bind-Value="Filtros.Raridade">
+                    <option value="">-selecione uma raridade-</option>
+                    @foreach (var raridade in Raridade.Raridades)
+                    {
+                        <option value="@raridade.Key">@raridade.Value</option>
+                    }
+                </InputSelect>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="custo-mana" class="form-label">Custo de Mana</label>
+                    <InputText id="custo-mana" class="form-control" @bind-Value=Filtros.CustoMana></InputText>
+                </div>
+                <div class="col-6">
+                    <label for="cmc" class="form-label">Valor de Mana(CMC)</label>
+                    <InputNumber id="cmc" class="form-control" @bind-Value=Filtros.ValorMana></InputNumber>
+                </div>
+            </div>
+            <div class="row filtros-cor">
+                @foreach (var cor in Simbolo.Cores)
+                {
+                    <div class="col-md-4 col-lg-2 col-sm-6 mt-2">
+                        <div class="form-check">
+                            <input typeof="checkbox" class="form-check-input" @onchange="(ChangeEventArgs e) => FiltroDeCorChangehandler(cor,((bool?)e.Value)??false)" />
+                            <label class="form-check-label label-mana"><ManaSymbol Tipo="@cor" /></label>
+                        </div>
+                    </div>
+                }
+
+                <div class="col-6 col-sm-12 mt-2">
+                    <InputSelect @bind-Value="Filtros.TipoFiltroCor" class="form-control" name="color_comparison" id="color_comparison">
+                        <option value="=">Exactly these colors</option>
+                        <option value=">=">Including these colors</option>
+                        <option value="<=">At most these colors</option>
+                    </InputSelect>
+                </div>
+            </div>
+            <div class="mt-2">
+                <label class="form-label" for="texto">Texto na Carta</label>
+                <InputText id="texto" class="form-control" @bind-Value="Filtros.Texto" />
+            </div>
+        </EditForm>
+    </ModalBody>
+    <ModalFooter>
+        <button type="button" class="btn btn-secondary" @onclick="LimparFiltros" data-bs-toggle="modal" data-bs-target="#filtros">LIMPAR</button>
+        <button type="button" class="btn btn-primary" @onclick="() => BuscarCartas()" data-bs-toggle="modal" data-bs-target="#filtros">APLICAR</button>
+    </ModalFooter>
+</Modal>
+
+
+@code {
+    [Parameter]
+    public FiltroBuscaCartaViewModel Filtros { get; set; }
+    [Parameter]
+    public EventCallback<FiltroBuscaCartaViewModel> FiltrosChanged { get; set; }
+
+    [Parameter]
+    public Func<Task>? OnFilter { get; set; }
+
+    [Parameter]
+    public Action? OnClearFilter { get; set; }
+
+    private ConsultaResponseViewModel? cartasBusca = null;
+    private IEnumerable<TipoViewModel>? tipos = new List<TipoViewModel>();
+    private IEnumerable<EdicaoViewModel>? edicoes = new List<EdicaoViewModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        tipos = await _cartaService.BuscarTipos();
+        edicoes = await _cartaService.BuscaEdicoes();
+    }
+
+    private void BuscarCartas() => OnFilter?.Invoke();
+
+    private void LimparFiltros()
+    {
+        Filtros = new();
+        FiltrosChanged.InvokeAsync(Filtros);
+        OnClearFilter?.Invoke();
+    }
+
+    private void FiltroDeCorChangehandler(string corSimbolo, bool inclui)
+    {
+        if (inclui)
+            Filtros.FiltroDeCor += corSimbolo;
+        else
+            Filtros.FiltroDeCor = Filtros.FiltroDeCor.Replace(corSimbolo, "");
+    }
+
+}
+

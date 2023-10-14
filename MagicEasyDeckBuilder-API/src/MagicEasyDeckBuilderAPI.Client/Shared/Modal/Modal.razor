@@ -1,4 +1,5 @@
-﻿<div class="modal fade" id="@Id" tabindex="-1" aria-labelledby="@label" aria-hidden="true">
+﻿@inject IJSRuntime JS
+<div class="modal fade" id="@Id" tabindex="-1" aria-labelledby="@label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content content-box">
             <div class="modal-header">
@@ -28,12 +29,16 @@
     public string Titulo { get; set; } = string.Empty;
 
     [Parameter]
-    [EditorRequired]
     public RenderFragment ModalBody { get; set; }
 
     [Parameter]
     public RenderFragment? ModalFooter { get; set; }
 
     private string label => Id + "Label";
+
+    public void Show()
+    {
+        JS.InvokeVoidAsync("openModal", Id);
+    }
 
 }

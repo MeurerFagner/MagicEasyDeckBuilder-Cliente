@@ -1,0 +1,70 @@
+﻿<div class="carta-deck @(CartaDeck.Comandante?"comandante":"") mt-2">
+    <div class="quantidade" >
+        <div class="valor">
+
+        @if (CartaDeck.Comandante)
+        {
+            <img src="images/symbols/planeswalker.svg" />
+        }
+        else
+        {
+            @CartaDeck.Quantidade
+        }
+        </div>
+        <div class="remover">
+            <i class="bi bi-dash"></i>
+        </div>
+        <div class="pesquisar">
+            <i class="bi bi-search"></i>
+        </div>
+    </div>
+    <div class="info-carta @GetClassCor(CartaDeck.Carta.Cores)" @onclick="() => OnRemoveClick.InvokeAsync(CartaDeck)">
+        <div>@CartaDeck.Carta.NomeOriginal</div>
+        <div class="cores">
+            @foreach (var cor in CustoDeMana(CartaDeck.Carta.CustoMana))
+            {
+                <ManaSymbol Tipo="@(cor.ToString())"/>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public CartaDeckViewModel CartaDeck { get; set; }
+
+    [Parameter]
+    public EventCallback<CartaDeckViewModel> OnRemoveClick { get; set; }
+    public EventCallback<string> OnPesqusaClick { get; set; }
+
+    private IEnumerable<string> CustoDeMana(string custoMana)
+    {
+        //CUSTOS VEM DIVIDIDOS ENTRE CHAVES EX: {1}{2/B}{B}
+        //FORMATANDO PARA USAR SPLIT: 1{2B{B
+        var custoSemChaves = custoMana.Replace("}", "").Replace("/","").Substring(1);
+        var custoArray = custoSemChaves.Split("{");
+
+        return custoArray;
+    }
+
+    private string GetClassCor(IEnumerable<string> cores)
+    {
+        var classCor = "cor-";
+
+        if (cores != null && cores.Any())
+        {
+            if (cores.Count() > 2)
+                classCor += "mult";
+            else
+                classCor += string.Join("", cores.OrderBy(o => o)).ToLower();
+        }
+        else
+        {
+            classCor += "c";
+        }
+
+        return classCor;
+    }
+
+}

@@ -381,7 +381,7 @@ namespace MagicEasydeckBuilderAPI.Infra.Test
             // Act
             var edicoes = await _apiService.BuscaEdicoes();
             // Assert
-            Assert.Contains(edicoes, e => e.Code == "war");
+            Assert.Contains(edicoes, e => e.Sigla == "war");
             Assert.Contains(edicoes, e => e.Nome == "Kamigawa: Neon Dynasty");
 
         }

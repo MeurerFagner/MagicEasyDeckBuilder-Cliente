@@ -1,0 +1,21 @@
+.label-mana, option img {
+  min-width: 15px;
+  min-height: 15px;
+}
+
+.quantidade-cartas {
+  margin-left: auto !important;
+}
+
+.accordion-button {
+  padding: 0.5rem;
+  background-color: #171717 !important;
+  color: #fff !important;
+}
+
+.accordion-body {
+  background-color: #303030 !important;
+  padding: 0.5rem !important;
+}
+
+/*# sourceMappingURL=DeckEdit.razor.css.map */

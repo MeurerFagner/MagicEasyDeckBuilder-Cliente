@@ -7,7 +7,8 @@ namespace MagicEasyDeckBuilderAPI.Dominio.DTO
     public class EdicaoDTO
     {
         public string Nome { get; set; }
-        public string Code { get; set; }
-        public string IconUriSvg { get; set; }
+        public string Sigla { get; set; }
+        public string IconUrl { get; set; }
+        public string Tipo { get; set; }
     }
 }

@@ -1,0 +1,19 @@
+@import "../Styles/_variaveis.scss";
+.label-mana, option img {
+    min-width: 15px;
+    min-height: 15px;
+}
+.quantidade-cartas{
+    margin-left:auto !important;
+}
+.accordion-button{
+    padding: 0.5rem;
+    background-color: $cor-preto-contraste !important;
+    color: $cor-branco !important;
+
+}
+
+.accordion-body {
+    background-color: $cor-preto !important;
+    padding: 0.5rem !important;
+}

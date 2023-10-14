@@ -13,6 +13,7 @@ namespace MagicEasyDeckBuilderAPI.Core.Constantes
         public const string TERRENO = "Land";
         public const string PLANESWALKER = "Planeswalker";
         public const string FEITICO = "Sorcery";
+        public const string MAGIA_E_FEITICO = "Spell";
         public const string TRIBAl = "Tribal";
 
         public static IEnumerable<string> Tipos = new List<string>

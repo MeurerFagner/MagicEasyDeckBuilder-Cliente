@@ -9,7 +9,12 @@ namespace MagicEasyDeckBuilderAPI.Core.Constantes
         public const string COMUM = "common";
         public const string INCOMUM = "uncommon";
         public const string RARA = "rare";
-        public const string MITICA = "mythic";        
+        public const string MITICA = "mythic";
+
+        public static Dictionary<string, string> Raridades => new Dictionary<string, string>
+        {
+            {COMUM, "Common" }, {INCOMUM,  "Uncommon"}, { RARA,"Rare"}, {MITICA," Mythic Rare   "}
+        };
     }
 
 }

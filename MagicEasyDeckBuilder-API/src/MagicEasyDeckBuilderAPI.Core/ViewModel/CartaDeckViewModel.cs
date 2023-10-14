@@ -10,6 +10,7 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
     {
         public int Quantidade { get; set; }
         public bool Comandante { get; set; }
+        public string TipoDeck { get; set; }
         public IEnumerable<string> Erros { get; set; }
         public CartaViewModel Carta { get; set; }
 

@@ -8,7 +8,7 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
         public Guid Id { get; set; }
         public Guid IdUsuario { get; set; }
         public string Nome { get; set; }
-        public string Formato { get; set; }
+        public FormatoViewModel Formato { get; set; }
         public IEnumerable<string> IdentidadeDeCor { get; set; }
         public IEnumerable<string> Erros { get; set; }
 
@@ -17,17 +17,25 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
         public IEnumerable<CartaDeckViewModel> MaybeDeck { get; set; }
         public string Capa { get; set; }
 
-        public DeckViewModel(Guid id, string nome, string formato, IEnumerable<string> identidadeDeCor, string imagemCapaUrl)
-        {
-            Id = id;
-            Nome = nome;
-            Formato = formato;
-            IdentidadeDeCor = identidadeDeCor;
-            Capa = imagemCapaUrl;
-        }
         public DeckViewModel()
         {
 
         }
+    }
+
+    public class FormatoViewModel
+    {
+        public FormatoViewModel(string nome, bool usaComandante, bool possuiSideDeck, int quantidadeMinimaCartas)
+        {
+            Nome = nome;
+            UsaComandante = usaComandante;
+            PossuiSideDeck = possuiSideDeck;
+            QuantidadeMinimaCartas = quantidadeMinimaCartas;
+        }
+
+        public string Nome { get; set; }
+        public bool UsaComandante { get; set; }
+        public bool PossuiSideDeck { get; set; }
+        public int QuantidadeMinimaCartas { get; set; }
     }
 }

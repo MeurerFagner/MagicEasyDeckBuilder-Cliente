@@ -1,13 +1,205 @@
-﻿@page "/decks/{DeckId}"
+﻿@using MagicEasyDeckBuilderAPI.Core.Constantes
+
+@page "/decks/{DeckId}"
 @attribute [Authorize]
 
-<h3>DeckEdit</h3>
+@inject IDeckService _deckService
+@inject ICartaService _cartaService
 
+@if (loading)
+{
+    <div class="spinner-grow text-primary" role="status">
+        <span class="sr-only"></span>
+    </div>
+}
+else
+{
+    if (exception != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <p>@exception.Message</p>
+            <p>@exception.StackTrace</p>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content-box">
+                <div class="filtro">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="nome-busca" @bind="filtros.Nome" placehorlder="Informe o nome da carta" />
+                        <button type="button" @onclick="()=>BuscarCartas()"><i class="bi bi-search"></i></button>
+                    </div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filtros">Filtros<span class="badge badge-light" @onclick="LimparFiltros"><img src="/images/filter-clear.svg" /></span></button>
+                </div>
+                <div id="container-cartas-pesquisa">
+                    @if (cartasBusca?.Cartas != null)
+                    {
+                        <div class="row">
+                            @foreach (var carta in cartasCarregadas)
+                            {
+                                <div class="col-md-4 mb-2" @onclick="()=>AdicionarCarta(carta.IdScryfall)"><CartaDisplay Carta="carta" /></div>
+                            }
+                        </div>
+                        @if (cartasBusca?.TotalDePaginas > 1 && cartasBusca?.TotalDePaginas >= nextPage)
+                        {
+
+                            <button class="btn btn-info" @onclick="() => BuscarCartas(nextPage)">
+                                Carregar mais cartas
+                            </button>
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="content-box">
+                <div class="header">
+                    <h3>@deck.Nome</h3>
+                    <div>@deck.Formato.Nome</div>
+
+                    <div>Terrenos: @(deck.MainDeck?.Count(c => c.Carta.Tipo.Contains("land")) ?? 0)</div>
+                    <button>Mudar Capa</button>
+                    <button>Estatisticas</button>
+                    <button>Incluir terrenos básicos</button>
+                </div>
+                <div id="conteudo-deck">
+                    <div id="accordion accordion-flush">
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="main-deck">
+                                <h5 class="mb-0">
+                                    <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Main Deck
+                                        <div class="quantidade-cartas">@($"{deck.MainDeck?.Count() ?? 0}/{deck.Formato.QuantidadeMinimaCartas}")</div>
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="main-deck" data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    @foreach (var cartaDeck in deck.MainDeck)
+                                    {
+                                        <CartaDeckDisplay CartaDeck="cartaDeck" OnRemoveClick="RemoverCarta" />
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        @if (deck.Formato.PossuiSideDeck)
+                        {
+
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="side-deck">
+                                    <h5 class="mb-0">
+                                        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Side Deck
+                                            <div class="quantidade-cartas">@($"{deck.SideDeck?.Count() ?? 0}/15")</div>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse accordion-collapse" aria-labelledby="side-deck" data-bs-parent="#accordion">
+                                    <div class="accordion-body">
+                                        @foreach (var cartaDeck in deck?.SideDeck)
+                                        {
+                                            <CartaDeckDisplay CartaDeck="cartaDeck" 
+                                                OnRemoveClick="RemoverCarta" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="accordion-item" style="display:none;">
+                            <div class="accordion-header" id="maybe-deck">
+                                <h5 class="mb-0">
+                                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Maybe
+                                        <div class="quantidade-cartas">@(deck.MaybeDeck?.Count() ?? 0)</div>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse accordion-collapse" aria-labelledby="maybe-deck" data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    @foreach (var cartaDeck in deck?.MaybeDeck)
+                                    {
+                                        <CartaDeckDisplay CartaDeck="cartaDeck" OnRemoveClick="RemoverCarta" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <FiltroModal @bind-Filtros="@filtros" OnClearFilter="LimparFiltros" OnFilter="() => BuscarCartas()" />
+}
 @code {
-
+    private Exception? exception = null;
+    private bool loading = true;
     [Parameter]
-    public string DeckId { get; set; }
+    public string DeckId { get; set; } = string.Empty;
 
+    private DeckViewModel deck = new();
+    private FiltroBuscaCartaViewModel filtros = new();
+    private ConsultaResponseViewModel? cartasBusca = null;
+    public List<CartaViewModel> cartasCarregadas = new();
+    private int nextPage = 0;
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var deckIdGuid = new Guid(DeckId);
+            deck = await _deckService.ObterDeckPorId(deckIdGuid);
+        }
+        catch (Exception ex)
+        {
+            exception = ex;
+        }
+    }
 
+    private async Task BuscarCartas(int? page = null)
+    {
+        filtros.Page = page;
+        filtros.Formato = deck.Formato.Nome;
+        cartasBusca = await _cartaService.BuscaCartas(filtros);
+        if (page.HasValue && page > 1)
+            cartasCarregadas.AddRange(cartasBusca.Cartas);
+        else
+            cartasCarregadas = cartasBusca.Cartas.ToList();
+
+        nextPage = page.HasValue ? page.Value + 1 : 2;
+        StateHasChanged();
+    }
+
+    private void LimparFiltros()
+    {
+        cartasBusca = null;
+        StateHasChanged();
+    }
+
+    private void FiltroDeCorChangehandler(string corSimbolo, bool inclui)
+    {
+        if (inclui)
+            filtros.FiltroDeCor += corSimbolo;
+        else
+            filtros.FiltroDeCor = filtros.FiltroDeCor.Replace(corSimbolo, "");
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            loading = false;
+    }
+
+    private async Task AdicionarCarta(string idScryfall)
+    {
+        deck = await _deckService.AdicionarCarta(deck.Id, idScryfall, TipoInclusaoCarta.MAIN);
+        StateHasChanged();
+    }
+
+    private async Task RemoverCarta(CartaDeckViewModel cartaDeck)
+    {
+        deck = await _deckService.RemoverCarta(deck.Id, cartaDeck.Carta.Id, cartaDeck.TipoDeck);
+    }
 }

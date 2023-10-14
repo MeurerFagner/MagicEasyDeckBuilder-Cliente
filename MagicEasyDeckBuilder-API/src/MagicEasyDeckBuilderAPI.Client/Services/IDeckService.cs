@@ -9,8 +9,8 @@ namespace MagicEasyDeckBuilderAPI.Client.Services
         Task<Guid> IncluirDeck(IncluiDeckViewModel novoDeck);
         Task<DeckViewModel> AdicionarCarta(Guid idDeck, string idScryFall, string tipo);
         Task AlterarCapa(Guid idDeck, string urlImagem);
-        Task<DeckViewModel> MoverCarta(Guid idDeck, Guid idCarta, string tipoDeckOrigem, string tipodeckDestino, Guid idUsuario);
-        Task<DeckViewModel> RemoverCarta(Guid idDeck, Guid idCarta, string tipoDeck, Guid idUsuario);
+        Task<DeckViewModel> MoverCarta(Guid idDeck, Guid idCarta, string tipoDeckOrigem, string tipodeckDestino);
+        Task<DeckViewModel> RemoverCarta(Guid idDeck, Guid idCarta, string tipoDeck);
 
     }
 }

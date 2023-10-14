@@ -16,10 +16,12 @@ namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
             Nome = nome;
         }
 
-        protected virtual int GetLimiteMinimoDeCartas() => 60;
-        protected virtual int GetLimiteDeCopias() => 4;
-        protected virtual int GetQuantidadeSideDeck() => 15;
+        public virtual int GetLimiteMinimoDeCartas() => 60;
+        public virtual bool UsaComandante() => false;
+        public virtual int GetQuantidadeSideDeck() => 15;
 
+        protected virtual int GetLimiteDeCopias() => 4;
+        
         public virtual RetornoValidacao ValidaDeck(Deck deck)
         {
             var retornoValidacao = new RetornoValidacao();
@@ -124,7 +126,6 @@ namespace MagicEasyDeckBuilderAPI.Dominio.ObjetoDeValor.TiposFormato
                 _ => new TipoFormatoBase(nome)
             };
         }
-
 
     }
 }

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using MagicEasyDeckBuilderAPI.Core.Constantes;
 using MagicEasyDeckBuilderAPI.Core.ViewModel;
-using MagicEasyDeckBuilderAPI.Dominio.DTO;
-using MagicEasyDeckBuilderAPI.Dominio.Entidades;
 using MagicEasyDeckBuilderAPI.Dominio.Interfaces.Infra;
 
 namespace MagicEasyDeckBuilderAPI.App.Services
@@ -25,9 +23,9 @@ namespace MagicEasyDeckBuilderAPI.App.Services
             return _mapper.Map<CartaViewModel>(carta);
         }
 
-        public async Task<ConsultaResponseDTO> BuscaCartas(FiltroBuscaCartaViewModel filtros)
+        public async Task<ConsultaResponseViewModel> BuscaCartas(FiltroBuscaCartaViewModel filtros)
         {
-            return await _scryfallApiService.BuscaCartas(
+            var retornoDTO = await _scryfallApiService.BuscaCartas(
                 filtros.Nome,
                 filtros.Formato,
                 filtros.Tipos,
@@ -41,12 +39,15 @@ namespace MagicEasyDeckBuilderAPI.App.Services
                 filtros.Texto,
                 filtros.Page);
 
+            var retorno = _mapper.Map<ConsultaResponseViewModel>(retornoDTO);
+            return retorno;
         }
 
-        public async Task<IEnumerable<EdicaoDTO>> BuscaEdicoes()
+        public async Task<IEnumerable<EdicaoViewModel>> BuscaEdicoes()
+        
         {
             var edicoes = await _scryfallApiService.BuscaEdicoes();
-            return edicoes.OrderBy(o => o.Nome);
+            return _mapper.Map<IEnumerable<EdicaoViewModel>>(edicoes);
         }
 
         public async Task<IEnumerable<string>> BuscaNomesDeCarta(string nome)
@@ -56,24 +57,29 @@ namespace MagicEasyDeckBuilderAPI.App.Services
 
         public async Task<IEnumerable<TipoViewModel>> BuscaTipos()
         {
-            var tipos = new List<TipoViewModel>();            
 
-            var tiposArtefatos = await _scryfallApiService.BuscaTiposArtefato();
-            var tiposCriaturas = await _scryfallApiService.BuscaTiposCriatura();
-            var tiposEncantamentos = await _scryfallApiService.BuscaTiposEncantamento();
-            var tiposPlaneswalker = await _scryfallApiService.BuscaTiposPlaneswalker();
-            var tiposMagias = await _scryfallApiService.BuscaTiposMagia();
-            var tiposTerrenos = await _scryfallApiService.BuscaTiposTerreno();
+            var tipos = new List<TipoViewModel>
+            {
+                new TipoViewModel("Types", TipoCarta.Tipos),
+                new TipoViewModel("Supertypes", TipoCarta.SuperTipos)
+            };
 
-            tipos.Add(new TipoViewModel("Types", TipoCarta.Tipos));
-            tipos.Add(new TipoViewModel("Supertypes", TipoCarta.SuperTipos));
-            tipos.Add(new TipoViewModel(TipoCarta.ARTEFATO, tiposArtefatos));
-            tipos.Add(new TipoViewModel(TipoCarta.CRIATURA, tiposCriaturas));
-            tipos.Add(new TipoViewModel(TipoCarta.ENCANTAMENTO, tiposEncantamentos));
-            tipos.Add(new TipoViewModel(TipoCarta.TERRENO, tiposTerrenos));
-            tipos.Add(new TipoViewModel(TipoCarta.PLANESWALKER, tiposPlaneswalker));
-            tipos.Add(new TipoViewModel("Spells", tiposMagias));
+            var dicionarioDeBuscas = new Dictionary<string, Func<Task<IEnumerable<string>>>>();
+            dicionarioDeBuscas[TipoCarta.ARTEFATO] = _scryfallApiService.BuscaTiposArtefato;
+            dicionarioDeBuscas[TipoCarta.CRIATURA] = _scryfallApiService.BuscaTiposCriatura;
+            dicionarioDeBuscas[TipoCarta.ENCANTAMENTO] = _scryfallApiService.BuscaTiposEncantamento;
+            dicionarioDeBuscas[TipoCarta.TERRENO] = _scryfallApiService.BuscaTiposTerreno;
+            dicionarioDeBuscas[TipoCarta.PLANESWALKER] = _scryfallApiService.BuscaTiposPlaneswalker;
+            dicionarioDeBuscas[TipoCarta.MAGIA_E_FEITICO] = _scryfallApiService.BuscaTiposMagia;
 
+            await Parallel.ForEachAsync(dicionarioDeBuscas, async (dado,token) =>
+            {
+                var retorno = await dado.Value.Invoke();
+                Console.WriteLine(dado.Key);
+                tipos.Add(new TipoViewModel(dado.Key, retorno));
+            });
+
+                Console.WriteLine("Fim");
             return tipos;
         }
     }

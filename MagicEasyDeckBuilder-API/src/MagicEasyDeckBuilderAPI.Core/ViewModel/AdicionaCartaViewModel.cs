@@ -30,4 +30,27 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
             Tipo = tipo;
         }
     }
+
+    public class RemoverCartaViewModel
+    {
+        [Required]
+        public Guid IdDeck { get; set; }
+        [Required]
+        public Guid IdCarta { get; set; }
+        [Required]
+        [RegularExpression("main|side|maybe|comandante")]
+        public string Tipo { get; set; }
+
+        public RemoverCartaViewModel()
+        {
+
+        }
+
+        public RemoverCartaViewModel(Guid idDeck, Guid idCarta, string tipo)
+        {
+            IdDeck = idDeck;
+            IdCarta = idCarta;
+            Tipo = tipo;
+        }
+    }
 }

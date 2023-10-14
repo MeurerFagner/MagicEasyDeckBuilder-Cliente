@@ -5,7 +5,7 @@ namespace MagicEasyDeckBuilderAPI.Core.ViewModel
 {
     public class CartaViewModel
     {
-        public Guid IdCarta { get; set; }
+        public Guid Id { get; set; }
         public string IdScryfall { get; set; }
         public string Nome { get; set; }
         public string NomeOriginal { get; set; }
