@@ -1,0 +1,6 @@
+@import "cores.scss";
+
+input, textarea, .form-control{
+  background-color: $preto;
+  border-color: rgba($color: #fff, $alpha: .25);
+}

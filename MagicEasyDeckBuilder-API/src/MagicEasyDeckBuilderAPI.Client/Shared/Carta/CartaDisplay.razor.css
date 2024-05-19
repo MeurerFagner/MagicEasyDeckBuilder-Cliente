@@ -1,6 +1,7 @@
 .carta {
   position: relative;
   width: 100%;
+  cursor: pointer;
 }
 .carta img {
   width: 100%;
